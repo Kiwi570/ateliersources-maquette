@@ -114,13 +114,13 @@ function journee() {
   if (!sec) return;
   const ciel = qs('.journee-ciel', sec), astre = qs('.journee-astre', sec);
   const couleurs = qsa('.moment', sec).map((m) => m.dataset.ciel);
+  const melange = gsap.utils.interpolate(couleurs);
   const maj = (p) => {
-    const i = Math.min(couleurs.length - 1, Math.floor(p * couleurs.length * 0.999));
-    ciel.style.setProperty('--ciel', couleurs[i]);
+    ciel.style.setProperty('--ciel', melange(Math.min(1, Math.max(0, p))));
     const w = sec.clientWidth, h = sec.clientHeight;
-    const x = w * (0.1 + 0.8 * p), y = h * (0.62 - Math.sin(p * Math.PI) * 0.48);
+    const x = w * (0.08 + 0.84 * p), y = h * (0.3 - Math.sin(p * Math.PI) * 0.2);
     astre.style.transform = `translate(${x}px, ${y}px)`;
-    astre.style.opacity = String(0.25 + Math.sin(p * Math.PI) * 0.45);
+    astre.style.opacity = String(0.12 + Math.sin(p * Math.PI) * 0.22);
   };
   sec.addEventListener('avance', (e) => maj(e.detail));
   maj(0);

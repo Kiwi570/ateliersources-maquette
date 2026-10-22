@@ -73,11 +73,12 @@ function saisons() {
   };
   if (!estCalme()) new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) boucle(); }).observe(sec);
 
-  // démonstration : si la saison réelle est froide, la page bascule seule une fois vers l'hiver
-  const mois = new Date().getMonth() + 1;
-  const froid = mois >= 10 || mois <= 3;
-  if (froid && !estCalme()) {
-    ScrollTrigger.create({ trigger: sec, start: 'top 35%', once: true, onEnter: () => gsap.to(etat, { t: 1, duration: 2.4, delay: 0.6, ease: 'power2.inOut', onUpdate: () => appliquer(etat.t) }) });
+  // indice : le curseur esquisse le passage vers l'hiver puis revient, sans changer la saison choisie
+  if (!estCalme()) {
+    ScrollTrigger.create({ trigger: sec, start: 'top 45%', once: true, onEnter: () => {
+      if (etat.t > 0) return;
+      gsap.to(etat, { t: 0.14, duration: 0.8, delay: 0.7, ease: 'power2.out', yoyo: true, repeat: 1, onUpdate: () => appliquer(etat.t) });
+    } });
   }
 }
 
@@ -110,7 +111,7 @@ function carte() {
   riv.style.strokeDasharray = L; riv.style.strokeDashoffset = L;
   const o = { p: 0 };
   gsap.to(riv, { strokeDashoffset: 0, duration: 2.6, ease: 'power2.inOut', scrollTrigger: { trigger: sec, start: 'top 60%', once: true } });
-  gsap.from(reperes, { scale: 0, opacity: 0, duration: 0.8, stagger: 0.18, delay: 1.2, ease: 'back.out(2)', scrollTrigger: { trigger: sec, start: 'top 60%', once: true } });
+  gsap.from(qsa('.repere', sec), { scale: 0, opacity: 0, duration: 0.8, stagger: 0.18, delay: 1.2, ease: 'back.out(2)', scrollTrigger: { trigger: sec, start: 'top 60%', once: true } });
   gsap.to(o, {
     p: 1, ease: 'none', scrollTrigger: { trigger: '.carte', start: 'top 80%', end: 'bottom 20%', scrub: 1.2 },
     onUpdate: () => {
@@ -142,11 +143,6 @@ function rituel() {
       etapes.forEach((e, k) => e.classList.toggle('is-actif', k === i));
     },
   });
-  // brume de chaleur sur la photo de la cabine
-  const dm = qs('#f-chaleur feDisplacementMap'), turb = qs('#f-chaleur feTurbulence');
-  let vis = false, t = 0;
-  const vit = () => { if (!vis) return; t += 0.01; turb.setAttribute('baseFrequency', `0.01 ${(0.045 + Math.sin(t) * 0.01).toFixed(4)}`); requestAnimationFrame(vit); };
-  ScrollTrigger.create({ trigger: '.sauna-chaleur', start: 'top bottom', end: 'bottom top', onToggle: (s) => { vis = s.isActive; dm.setAttribute('scale', vis ? '7' : '0'); if (vis) vit(); } });
 }
 
 /* ---------- Programme ---------- */
@@ -166,13 +162,30 @@ function programme() {
   if (avenir.length && zone) {
     qs('.prochain-vide', zone).innerHTML = avenir.slice(0, 3).map((s) => `<strong>${fmt(s.debut, s.fin)}</strong><br>${s.titre}, avec ${s.avec}`).join('<br><br>');
   }
-  let annee = null, html = '';
-  passes.forEach((s) => {
-    const y = d(s.debut).getFullYear();
-    if (y !== annee) { annee = y; html += `<li class="frise-annee">${y}</li>`; }
-    html += `<li class="stage"><span class="stage-date">${fmt(s.debut, s.fin)}</span><span class="stage-titre">${s.titre}</span><span class="stage-avec">avec ${s.avec}</span>${s.complet ? '<span class="stage-etat">Était complet</span>' : ''}</li>`;
-  });
-  liste.innerHTML = html;
+  const marquer = (t) => t.replace(/à compléter/g, '<mark class="a-completer">à compléter</mark>');
+  const LIMITE = 5;
+  const bPlus = qs('[data-passes-plus]');
+  const rendre = (tout) => {
+    let annee = null, html = '';
+    passes.slice(0, tout ? passes.length : LIMITE).forEach((s) => {
+      const y = d(s.debut).getFullYear();
+      if (y !== annee) { annee = y; html += `<li class="frise-annee">${y}</li>`; }
+      html += `<li class="stage"><span class="stage-date">${fmt(s.debut, s.fin)}</span><span class="stage-titre">${marquer(s.titre)}</span><span class="stage-avec">avec ${s.avec}</span>${s.complet ? '<span class="stage-etat">Était complet</span>' : ''}</li>`;
+    });
+    liste.innerHTML = html;
+  };
+  rendre(false);
+  if (bPlus && passes.length > LIMITE) {
+    bPlus.hidden = false;
+    qs('span', bPlus).textContent = `Voir les ${passes.length - LIMITE} autres stages passés`;
+    bPlus.addEventListener('click', () => {
+      const ouvert = bPlus.getAttribute('aria-expanded') === 'true';
+      rendre(!ouvert);
+      bPlus.setAttribute('aria-expanded', String(!ouvert));
+      qs('span', bPlus).textContent = ouvert ? `Voir les ${passes.length - LIMITE} autres stages passés` : 'Afficher moins';
+      ScrollTrigger.refresh();
+    });
+  }
   if (!estCalme()) gsap.from(qsa('li', liste), { y: 16, opacity: 0, duration: 0.8, stagger: 0.05, ease: 'power3.out', scrollTrigger: { trigger: liste, start: 'top 80%', once: true } });
 }
 
@@ -180,21 +193,32 @@ function programme() {
 function citations() {
   const zone = qs('[data-citations]');
   if (!zone) return;
-  const items = qsa('.citation', zone), compte = qs('.citations-compte');
-  let i = 0, minuteur = 0, pause = false;
+  const items = qsa('.citation', zone), compte = qs('.citations-compte'), bPause = qs('[data-cit-pause]');
+  let i = 0, minuteur = 0, pause = false, arret = estCalme();
   const montrer = (n) => {
     i = (n + items.length) % items.length;
     items.forEach((c, k) => { c.classList.toggle('is-active', k === i); c.setAttribute('aria-hidden', String(k !== i)); });
     compte.textContent = `${i + 1} / ${items.length}`;
   };
-  const programmer = () => { clearTimeout(minuteur); if (!estCalme() && !pause) minuteur = setTimeout(() => { montrer(i + 1); programmer(); }, 7000); };
-  qs('[data-cit-prec]').addEventListener('click', () => { montrer(i - 1); programmer(); });
-  qs('[data-cit-suiv]').addEventListener('click', () => { montrer(i + 1); programmer(); });
+  let enVue = false;
+  const programmer = () => { clearTimeout(minuteur); if (!arret && !pause && enVue) minuteur = setTimeout(() => { montrer(i + 1); programmer(); }, 7000); };
+  const manuel = () => zone.setAttribute('aria-live', 'polite');
+  qs('[data-cit-prec]').addEventListener('click', () => { manuel(); montrer(i - 1); programmer(); });
+  qs('[data-cit-suiv]').addEventListener('click', () => { manuel(); montrer(i + 1); programmer(); });
+  const majPause = () => { bPause.setAttribute('aria-pressed', String(arret)); qs('span', bPause).textContent = arret ? 'Lecture' : 'Pause'; };
+  bPause.addEventListener('click', () => { arret = !arret; majPause(); programmer(); });
+  majPause();
   const sec = zone.closest('section');
   sec.addEventListener('pointerenter', () => { pause = true; clearTimeout(minuteur); });
   sec.addEventListener('pointerleave', () => { pause = false; programmer(); });
   sec.addEventListener('focusin', () => { pause = true; clearTimeout(minuteur); });
-  montrer(0); programmer();
+  sec.addEventListener('focusout', (e) => { if (!sec.contains(e.relatedTarget)) { pause = false; programmer(); } });
+  montrer(0);
+  // la rotation ne démarre que lorsque les témoignages sont à l'écran
+  new IntersectionObserver(([e]) => {
+    enVue = e.isIntersecting;
+    if (enVue) programmer(); else clearTimeout(minuteur);
+  }, { threshold: 0.4 }).observe(zone);
 }
 
 /* ---------- Venir : la ligne se trace ---------- */
@@ -210,7 +234,7 @@ function reflet() {
   const r = qs('.reflet');
   if (!r) return;
   const img = qs('.reflet-img', r), eau = qs('.reflet-eau', r);
-  const copie = img.cloneNode(); copie.removeAttribute('class'); copie.alt = ''; copie.loading = 'lazy';
+  const copie = img.cloneNode(); copie.removeAttribute('class'); copie.removeAttribute('style'); copie.alt = ''; copie.loading = 'lazy';
   eau.appendChild(copie);
   if (estCalme()) return;
   const turb = qs('#f-reflet feTurbulence');

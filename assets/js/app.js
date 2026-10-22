@@ -10,6 +10,16 @@ import { initAnimations, initAnimationsCalmes } from './animations.js';
 import { initAccueil } from './accueil.js';
 import { initOrganiser } from './organiser.js';
 
+// Filet de sécurité : si une bibliothèque manque ou qu'un module échoue, le voile d'ouverture se retire
+// et la page reste entièrement lisible.
+const libererVoile = () => { const v = qs('.intro'); if (v) v.classList.add('is-fini'); };
+if (!window.gsap || !window.ScrollTrigger || !window.SplitText) {
+  libererVoile();
+  document.documentElement.classList.add('is-calme');
+  throw new Error('Bibliothèques d\u2019animation indisponibles : version statique affichée.');
+}
+const securiser = (nom, f) => { try { return f(); } catch (e) { console.error(`[${nom}]`, e); return null; } };
+
 gsap.registerPlugin(ScrollTrigger, SplitText);
 gsap.config({ nullTargetWarn: false });
 if (history.scrollRestoration) history.scrollRestoration = 'manual';
@@ -17,15 +27,15 @@ if (history.scrollRestoration) history.scrollRestoration = 'manual';
 const calme = estCalme();
 const pageNom = document.body.dataset.page;
 
-initInterface();
-initSon();
-initDefilement();
-initCurseur();
-const eau = initEau();
-initAnimations();
-if (calme) initAnimationsCalmes();
-if (pageNom === 'accueil') initAccueil();
-if (pageNom === 'organiser') initOrganiser();
+securiser('interface', initInterface);
+securiser('son', initSon);
+securiser('defilement', initDefilement);
+securiser('curseur', initCurseur);
+const eau = securiser('eau', initEau);
+securiser('animations', initAnimations);
+if (calme) securiser('calme', initAnimationsCalmes);
+if (pageNom === 'accueil') securiser('accueil', initAccueil);
+if (pageNom === 'organiser') securiser('organiser', initOrganiser);
 
 function ouverture() {
   const intro = qs('.intro');
@@ -33,11 +43,16 @@ function ouverture() {
   const autres = qsa('.ouverture-lieu, .ouverture-texte, .ouverture-actions, .ouverture-suite');
   const fin = () => {
     intro && intro.classList.add('is-fini');
-    initRiviere();
+    securiser('riviere', initRiviere);
     ScrollTrigger.refresh();
     if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) setTimeout(() => window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY), 60); }
   };
   if (calme) { if (eau) eau.montrer(); fin(); return; }
+  if (!titre) {
+    // page sans ouverture (mentions légales) : le voile se retire simplement
+    gsap.to(intro, { yPercent: -100, duration: 0.8, ease: 'power3.inOut', onComplete: fin });
+    return;
+  }
 
   let deja = false;
   try { deja = sessionStorage.getItem('ads-intro') === '1'; sessionStorage.setItem('ads-intro', '1'); } catch (e) {}
@@ -49,6 +64,11 @@ function ouverture() {
   gsap.set('.barre', { yPercent: -100 });
 
   const tl = gsap.timeline({ onComplete: fin });
+  // un geste du visiteur (molette, toucher, touche, clic) accélère l'ouverture
+  const presser = () => { if (tl.progress() < 1) tl.timeScale(4); retirer(); };
+  const evts = ['wheel', 'touchstart', 'keydown', 'pointerdown'];
+  const retirer = () => evts.forEach((n) => window.removeEventListener(n, presser));
+  evts.forEach((n) => window.addEventListener(n, presser, { passive: true }));
   if (longue) {
     const g = qs('.intro-goutte'), ondes = qsa('.intro-onde'), logo = qs('.intro-logo');
     tl.to(g, { attr: { cy: 200 }, duration: 0.5, ease: 'power2.in' })
@@ -68,5 +88,7 @@ function ouverture() {
 }
 
 // L'ouverture démarre quand les polices sont prêtes (titres découpés au bon endroit), au plus tard après 1,2 s
-Promise.race([document.fonts ? document.fonts.ready : Promise.resolve(), new Promise((ok) => setTimeout(ok, 1200))]).then(ouverture);
+Promise.race([document.fonts ? document.fonts.ready : Promise.resolve(), new Promise((ok) => setTimeout(ok, 1200))])
+  .then(ouverture)
+  .catch((e) => { console.error('[ouverture]', e); libererVoile(); gsap.set(['.barre', '.ouverture-titre', '.ouverture-lieu', '.ouverture-texte', '.ouverture-actions'], { clearProps: 'all' }); });
 window.addEventListener('load', () => ScrollTrigger.refresh());

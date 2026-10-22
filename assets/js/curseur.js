@@ -7,13 +7,14 @@ export function initCurseur() {
   const calque = document.createElement('div');
   calque.className = 'ronds'; calque.setAttribute('aria-hidden', 'true');
   document.body.appendChild(calque);
-  document.documentElement.classList.add('a-curseur');
+  c.style.visibility = 'hidden'; // le curseur personnalisé n'apparaît (et ne remplace le curseur natif) qu'au premier mouvement
   const x = gsap.quickTo(c, 'x', { duration: 0.18, ease: 'power3.out' });
   const y = gsap.quickTo(c, 'y', { duration: 0.18, ease: 'power3.out' });
   let dernier = { x: -999, y: -999, t: 0 }, n = 0;
 
   window.addEventListener('pointermove', (e) => {
     if (e.pointerType !== 'mouse') return;
+    if (c.style.visibility) { gsap.set(c, { x: e.clientX, y: e.clientY }); c.style.visibility = ''; document.documentElement.classList.add('a-curseur'); }
     x(e.clientX); y(e.clientY);
     const now = performance.now();
     const d = Math.hypot(e.clientX - dernier.x, e.clientY - dernier.y);

@@ -111,9 +111,10 @@ export function initEau() {
   if (!gl) { document.documentElement.classList.add('sans-webgl'); return null; }
   gl.clearColor(0.055, 0.149, 0.165, 1);
 
-  const mobile = estMobile() && window.innerHeight > window.innerWidth;
-  const src = mobile ? zone.dataset.srcMobile : zone.dataset.src;
-  const focus = (mobile ? zone.dataset.focusMobile : zone.dataset.focus || '0.5 0.5').split(' ').map(Number);
+  // la texture réutilise la photo déjà chargée par la page (aucun second téléchargement)
+  const photo = zone.querySelector('img');
+  const recadree = () => /-mobile-/.test(photo.currentSrc || '');
+  const focus = (zone.dataset.focus || '0.5 0.5').split(' ').map(Number);
 
   const texture = new Texture(gl, { generateMipmaps: false, minFilter: gl.LINEAR, magFilter: gl.LINEAR, wrapS: gl.CLAMP_TO_EDGE, wrapT: gl.CLAMP_TO_EDGE });
   const ronds = new Array(40).fill(0);
@@ -124,7 +125,7 @@ export function initEau() {
       uRes: { value: [1, 1] },
       uImg: { value: [16, 9] },
       uFocus: { value: focus },
-      uZoom: { value: Number((mobile ? zone.dataset.zoomMobile : zone.dataset.zoom) || 1) },
+      uZoom: { value: Number(zone.dataset.zoom || 1) },
       uTime: { value: 0 },
       uAgite: { value: 1 },
       uIntro: { value: 0 },
@@ -184,13 +185,14 @@ export function initEau() {
     raf = requestAnimationFrame(boucle);
   }
 
-  const img = new Image();
-  img.decoding = 'async';
-  img.src = src;
-  const pret = img.decode ? img.decode() : new Promise((ok) => { img.onload = ok; });
+  const pret = photo.complete && photo.naturalWidth ? Promise.resolve() : new Promise((ok, ko) => {
+    photo.addEventListener('load', ok, { once: true });
+    photo.addEventListener('error', ko, { once: true });
+  });
   const promesse = pret.then(() => {
-    texture.image = img;
-    program.uniforms.uImg.value = [img.naturalWidth, img.naturalHeight];
+    texture.image = photo;
+    program.uniforms.uImg.value = [photo.naturalWidth, photo.naturalHeight];
+    if (recadree()) { program.uniforms.uFocus.value = [0.5, 0.5]; program.uniforms.uZoom.value = 1; }
     etat.pret = true;
     etat.t0 = performance.now();
     zone.classList.add('is-pret');

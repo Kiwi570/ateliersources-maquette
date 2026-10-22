@@ -1,6 +1,7 @@
 // Page « Organiser un stage » : pratiques, maison en coupe, matériel, parcours, témoins, demande de disponibilité.
 import { qs, qsa, estCalme } from './outils.js';
 import { goutte } from './son.js';
+import { defilerVers } from './defilement.js';
 
 function pratiques() {
   const ul = qs('[data-pratiques]');
@@ -39,24 +40,23 @@ function coupe() {
     if (f) { f.setAttribute('aria-labelledby', b.id); b.setAttribute('aria-controls', 'fiche-' + b.dataset.piece); f.id = 'fiche-' + b.dataset.piece; }
     b.addEventListener('click', () => activer(b.dataset.piece));
     b.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-        e.preventDefault();
-        const n = onglets[(i + (e.key === 'ArrowRight' ? 1 : -1) + onglets.length) % onglets.length];
-        activer(n.dataset.piece, true);
-      }
+      const cibles = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: onglets.length - 1 };
+      if (!(e.key in cibles)) return;
+      e.preventDefault();
+      const n = onglets[(cibles[e.key] + onglets.length) % onglets.length];
+      activer(n.dataset.piece, true);
     });
   });
+  fiches.forEach((f) => { f.tabIndex = 0; });
   activer('pratique');
   if (estCalme()) return;
-  // la maison se dessine trait par trait, puis les cotes et les pièces apparaissent
+  // la maison se dessine en un geste (≈1,2 s) ; les noms des pièces restent lisibles dès le départ
   const traits = qsa('.trait path', svg);
   traits.forEach((p) => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
-  const cotes = qsa('.cotes > *', svg), textes = qsa('.piece text', svg);
-  const tl = gsap.timeline({ scrollTrigger: { trigger: svg, start: 'top 75%', once: true } });
-  tl.to(traits, { strokeDashoffset: 0, duration: 1.1, stagger: 0.12, ease: 'power2.inOut' })
-    .from(cotes, { opacity: 0, duration: 0.6, stagger: 0.05 }, '-=0.4')
-    .from(textes, { opacity: 0, y: 8, duration: 0.6, stagger: 0.06 }, '-=0.4')
-    .fromTo(qsa('.piece.is-active path, .piece.is-active rect', svg), { fillOpacity: 0 }, { fillOpacity: 0.55, duration: 0.8 }, '-=0.3');
+  const cotes = qsa('.cotes > *', svg);
+  const tl = gsap.timeline({ scrollTrigger: { trigger: svg, start: 'top 85%', once: true } });
+  tl.to(traits, { strokeDashoffset: 0, duration: 0.8, stagger: 0.03, ease: 'power2.inOut' })
+    .from(cotes, { opacity: 0, duration: 0.4 }, '-=0.3');
 }
 
 function icones() {
@@ -80,6 +80,15 @@ function flux() {
   const f = qs('[data-flux]');
   if (!f) return;
   qsa('.temoin', f).forEach((t) => { const c = t.cloneNode(true); c.setAttribute('aria-hidden', 'true'); f.appendChild(c); });
+  const b = qs('[data-flux-pause]');
+  if (!b) return;
+  if (estCalme()) { b.hidden = true; return; }
+  b.addEventListener('click', () => {
+    const p = !f.classList.contains('is-pause');
+    f.classList.toggle('is-pause', p);
+    b.setAttribute('aria-pressed', String(p));
+    qs('span', b).textContent = p ? 'Reprendre le défilement' : 'Mettre en pause le défilement';
+  });
 }
 
 /* ---------- Demande de disponibilité ---------- */
@@ -106,7 +115,17 @@ function formulaire() {
     if (!estCalme()) gsap.from(p, { x: 30 * dir, opacity: 0, duration: 0.6, ease: 'power3.out' });
     const leg = qs('legend', p);
     if (leg) { leg.tabIndex = -1; leg.focus({ preventScroll: true }); }
+    // ramener le haut de la carte à l'écran si l'étape commence hors champ
+    const carte = form.closest('.demande-carte'), r = carte.getBoundingClientRect();
+    const h = (qs('.barre') || { offsetHeight: 70 }).offsetHeight;
+    if (r.top < h || r.top > window.innerHeight * 0.5) defilerVers(window.scrollY + r.top - h - 16);
   };
+  const signaler = (texte, champ) => {
+    err.textContent = texte;
+    qsa('[aria-invalid]', form).forEach((c) => c.removeAttribute('aria-invalid'));
+    if (champ) { champ.setAttribute('aria-invalid', 'true'); champ.setAttribute('aria-describedby', 'form-erreur'); }
+  };
+  form.addEventListener('input', () => { if (err.textContent) { err.textContent = ''; qsa('[aria-invalid]', form).forEach((c) => c.removeAttribute('aria-invalid')); } });
 
   const valider = (k) => {
     const p = pas[k - 1];
@@ -115,23 +134,29 @@ function formulaire() {
     if (k === 4 && !qs('input[name="formule"]:checked', p)) return 'Choisissez une formule.';
     if (k === 5) {
       const nom = qs('[name="nom"]', p), mail = qs('[name="email"]', p);
-      if (!nom.value.trim()) { nom.focus(); return 'Indiquez votre prénom et votre nom.'; }
-      if (!mail.value || !mail.checkValidity()) { mail.focus(); return 'Indiquez une adresse e-mail valide, par exemple prenom@exemple.fr.'; }
+      if (!nom.value.trim()) { nom.focus(); invalide = nom; return 'Indiquez votre prénom et votre nom.'; }
+      if (!mail.value || !mail.checkValidity()) { mail.focus(); invalide = mail; return 'Indiquez une adresse e-mail valide, par exemple prenom@exemple.fr.'; }
     }
     return '';
   };
 
+  let invalide = null;
   bSuiv.addEventListener('click', () => {
+    invalide = null;
     const e = valider(n);
-    if (e) { err.textContent = e; return; }
+    if (e) { signaler(e, invalide); return; }
     montrer(n + 1, 1); goutte(0.5);
   });
   bPrec.addEventListener('click', () => montrer(n - 1, -1));
   form.addEventListener('submit', (ev) => {
     ev.preventDefault();
+    // Entrée dans un champ avant la dernière étape : passer à l'étape suivante
+    if (n < 5) { bSuiv.click(); return; }
+    invalide = null;
     const e = valider(5);
-    if (e) { err.textContent = e; return; }
+    if (e) { signaler(e, invalide); return; }
     goutte(1);
+    invalide = null;
     const carte = form.closest('.demande-carte'), merci = qs('.merci', carte);
     form.hidden = true; qs('.riviere-progres', carte).hidden = true; num.hidden = true; qs('.demande-intro', carte).hidden = true;
     merci.hidden = false; merci.focus();
@@ -170,13 +195,31 @@ function formulaire() {
     }
     grille.innerHTML = h;
     qs('[data-cal="-1"]', cal).disabled = vue <= new Date(auj.getFullYear(), auj.getMonth(), 1);
+    // un seul arrêt de tabulation dans la grille ; les flèches déplacent le focus
+    const jours = qsa('[data-jour]:not(:disabled)', grille);
+    jours.forEach((b) => { b.tabIndex = -1; });
+    const actif = (choix.arrivee && qs(`[data-jour="${iso(choix.arrivee)}"]:not(:disabled)`, grille)) || jours[0];
+    if (actif) actif.tabIndex = 0;
   };
+  grille.addEventListener('keydown', (e) => {
+    const b = e.target.closest('[data-jour]');
+    if (!b) return;
+    const pas = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7 }[e.key];
+    if (!pas) return;
+    e.preventDefault();
+    const d = new Date(b.dataset.jour + 'T00:00:00'); d.setDate(d.getDate() + pas);
+    if (d < auj) return;
+    if (d.getMonth() !== vue.getMonth() || d.getFullYear() !== vue.getFullYear()) { vue = new Date(d.getFullYear(), d.getMonth(), 1); dessiner(); }
+    const n = qs(`[data-jour="${iso(d)}"]`, grille);
+    if (n) { qsa('[data-jour]', grille).forEach((x) => { x.tabIndex = -1; }); n.tabIndex = 0; n.focus(); }
+  });
   grille.addEventListener('click', (e) => {
     const b = e.target.closest('[data-jour]');
     if (!b) return;
     const d = new Date(b.dataset.jour + 'T00:00:00');
     if (!choix.arrivee || choix.depart || d <= choix.arrivee) { choix.arrivee = d; choix.depart = null; }
     else choix.depart = d;
+    err.textContent = '';
     qs('[name="arrivee"]', form).value = choix.arrivee ? iso(choix.arrivee) : '';
     qs('[name="depart"]', form).value = choix.depart ? iso(choix.depart) : '';
     if (choix.arrivee && choix.depart) {

@@ -8,11 +8,12 @@
 <meta property="og:title" content="Organiser un stage à l'Atelier des Sources">
 <meta property="og:image" content="assets/img/salle/grande-salle-vide-charpente-1280.webp">
 <meta name="theme-color" content="#0E262A">
-<link rel="icon" href="assets/img/logo/logo.png">
+<link rel="icon" type="image/png" href="assets/img/logo/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/logo/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/fraunces-var.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="assets/fonts/instrument-sans-var.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
-<script>document.documentElement.className='js';try{if(localStorage.getItem('ads-calme')==='1'||matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('is-calme')}catch(e){}</script>
+<script>document.documentElement.className='js';(function(){var r=matchMedia('(prefers-reduced-motion: reduce)').matches,c=null;try{c=localStorage.getItem('ads-calme')}catch(e){}if(c==='1'||(c!=='0'&&r))document.documentElement.classList.add('is-calme')})()</script>
 </head>
 <body data-page="organiser">
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -65,8 +66,8 @@
 
 <header class="barre">
   <a class="barre-logo" href="index.html" aria-label="L'Atelier des Sources, accueil">
-    <img class="logo-sombre" src="assets/img/logo/logo.png" alt="" width="678" height="331">
-    <img class="logo-clair" src="assets/img/logo/logo-clair.png" alt="" width="678" height="331">
+    <img class="logo-sombre" src="assets/img/logo/logo-300.webp" alt="" width="300" height="146">
+    <img class="logo-clair" src="assets/img/logo/logo-clair-300.webp" alt="" width="300" height="146">
   </a>
   <nav class="barre-nav" aria-label="Navigation principale">
     <a class="lien" href="index.html#maison">Le lieu</a>
@@ -75,14 +76,14 @@
     <a class="lien" href="index.html#venir">Venir</a>
   </nav>
   <div class="barre-outils">
-    <button class="outil outil-son" type="button" aria-pressed="false" data-son>
+    <button class="outil outil-son" type="button" aria-pressed="false" aria-label="Son d'ambiance" data-son>
       <span class="outil-ondes" aria-hidden="true"><i></i><i></i><i></i></span>
       <span class="outil-texte">Son</span>
     </button>
     <button class="outil outil-calme" type="button" aria-pressed="false" data-calme>
       <span class="outil-texte">Mode calme</span>
     </button>
-    <a class="btn btn-plein magnetique barre-cta" href="organiser-un-stage.html#demande"><span>Demander une disponibilité</span></a>
+    <a class="btn btn-plein magnetique barre-cta" href="organiser-un-stage.html#demande"><span class="cta-long">Demander une disponibilité</span><span class="cta-court">Disponibilités</span></a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="menu" data-burger><span></span><span></span><span class="sr">Menu</span></button>
   </div>
 </header>
@@ -96,7 +97,10 @@
     <a href="index.html#venir">Venir</a>
     <a href="organiser-un-stage.html#demande">Demander une disponibilité</a>
   </nav>
-  <p class="menu-contact"><a href="tel:+33785831652">07 85 83 16 52</a> <a href="tel:+33680074788">06 80 07 47 88</a></p>
+  <div class="menu-bas">
+    <button class="outil menu-calme" type="button" aria-pressed="false" data-calme><span class="outil-texte">Mode calme : réduire les animations</span></button>
+    <p class="menu-contact"><a href="tel:+33785831652">07 85 83 16 52</a> <a href="tel:+33680074788">06 80 07 47 88</a></p>
+  </div>
 </div>
 
 <svg class="riviere" aria-hidden="true"><path class="riviere-lit"/><path class="riviere-eau"/></svg>
@@ -107,11 +111,11 @@
 
   <!-- 1. Ouverture -->
   <section class="ouverture ouverture-page" id="ouverture" data-theme="sombre" aria-labelledby="titre-ouverture">
-    <div class="ouverture-media" data-eau
-         data-src="assets/img/salle/grande-salle-vide-charpente-2560.webp"
-         data-src-mobile="assets/img/salle/grande-salle-vide-charpente-1920.webp"
-         data-focus="0.5 0.5" data-focus-mobile="0.44 0.5" data-zoom="1.05">
-      <img src="assets/img/salle/grande-salle-vide-charpente-1280.webp" srcset="assets/img/salle/grande-salle-vide-charpente-640.webp 640w, assets/img/salle/grande-salle-vide-charpente-1280.webp 1280w, assets/img/salle/grande-salle-vide-charpente-1920.webp 1920w, assets/img/salle/grande-salle-vide-charpente-2560.webp 2560w" sizes="100vw" width="4032" height="3024" alt="La grande salle de pratique vide, sous la charpente en bois" loading="eager" fetchpriority="high" decoding="async" class="ouverture-img">
+    <div class="ouverture-media" data-eau data-focus="0.5 0.5" data-zoom="1.05">
+      <picture>
+        <source media="(max-width: 899px) and (orientation: portrait)" srcset="assets/img/salle/grande-salle-mobile-720.webp 720w, assets/img/salle/grande-salle-mobile-1080.webp 1080w" sizes="100vw">
+        <img src="assets/img/salle/grande-salle-vide-charpente-1280.webp" srcset="assets/img/salle/grande-salle-vide-charpente-640.webp 640w, assets/img/salle/grande-salle-vide-charpente-1280.webp 1280w, assets/img/salle/grande-salle-vide-charpente-1920.webp 1920w, assets/img/salle/grande-salle-vide-charpente-2560.webp 2560w" sizes="100vw" width="4032" height="3024" alt="La grande salle de pratique vide, sous la charpente en bois" loading="eager" fetchpriority="high" decoding="async" class="ouverture-img">
+      </picture>
       <canvas class="eau-canvas" aria-hidden="true"></canvas>
     </div>
     <div class="ouverture-voile" aria-hidden="true"></div>
@@ -119,6 +123,13 @@
       <p class="ouverture-lieu">Pour les enseignants, thérapeutes et formateurs</p>
       <h1 class="ouverture-titre" id="titre-ouverture" data-split>Organiser un stage à l’Atelier des Sources</h1>
       <p class="ouverture-texte">Lieu intime, convivial et chaleureux, l’Atelier des Sources est un écrin de douceur dans lequel animer vos stages et retraites, toute l’année.</p>
+      <ul class="ouverture-faits" aria-label="L'essentiel">
+        <li>8 à 15 personnes</li>
+        <li>Chambres avec salle de bain</li>
+        <li>Pension complète végétarienne ou gestion libre</li>
+        <li>Sauna et verger de 1 000 m²</li>
+        <li>Gare de Châtellerault à 30 min</li>
+      </ul>
       <div class="ouverture-actions">
         <a class="btn btn-clair magnetique" href="#demande"><span>Demander une disponibilité</span></a>
         <a class="btn btn-contour-clair magnetique" href="#coupe"><span>Visiter la maison</span></a>
@@ -203,16 +214,16 @@
       </div>
       <div class="coupe-fiches">
         <article class="cfiche is-active" data-fiche="pratique" role="tabpanel">
-          <img src="assets/img/salle/grande-salle-vide-charpente-1280.webp" srcset="assets/img/salle/grande-salle-vide-charpente-640.webp 640w, assets/img/salle/grande-salle-vide-charpente-1280.webp 1280w, assets/img/salle/grande-salle-vide-charpente-1920.webp 1920w, assets/img/salle/grande-salle-vide-charpente-2560.webp 2560w" sizes="(min-width: 900px) 34vw, 90vw" width="4032" height="3024" alt="La salle de pratique sous la charpente" loading="lazy" decoding="async">
+          <img src="assets/img/salle/grande-salle-groupe-postures-1280.webp" srcset="assets/img/salle/grande-salle-groupe-postures-640.webp 640w, assets/img/salle/grande-salle-groupe-postures-1280.webp 1280w, assets/img/salle/grande-salle-groupe-postures-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 90vw" width="4032" height="3024" alt="Un groupe en pratique dans la salle sous la charpente" loading="lazy" decoding="async">
           <div><h3>Salle de pratique</h3>
           <p>Sous les combles, au 2e étage. La charpente apparente la rend très contenante, et l’isolation en laine de bois lui garde une bonne température toute l’année. Elle sent bon le bois.</p>
-          <p class="cfiche-cote">Surface : 80 ou 100 m² selon les pages du site actuel, à confirmer.</p></div>
+          <p class="cfiche-cote">Surface : 80 ou 100 m² selon les pages du site actuel, <mark class="a-completer">à confirmer</mark>.</p></div>
         </article>
         <article class="cfiche" data-fiche="chambres" role="tabpanel" hidden>
           <img src="assets/img/chambres/chambre-bleue-lit-double-1280.webp" srcset="assets/img/chambres/chambre-bleue-lit-double-640.webp 640w, assets/img/chambres/chambre-bleue-lit-double-1280.webp 1280w, assets/img/chambres/chambre-bleue-lit-double-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 90vw" width="4032" height="3024" alt="Une chambre aux murs bleus, lit double et papier peint fleuri" loading="lazy" decoding="async">
           <div><h3>Chambres</h3>
           <p>De grandes chambres partagées, vastes et confortables, chacune avec sa salle de bain. Groupes de 8 à 15 personnes ; pour toute autre configuration, étudions votre projet ensemble.</p>
-          <p class="cfiche-cote">Détail des chambres et des couchages : à compléter.</p></div>
+          <p class="cfiche-cote">Détail des chambres et des couchages : <mark class="a-completer">à compléter</mark>.</p></div>
         </article>
         <article class="cfiche" data-fiche="cuisine" role="tabpanel" hidden>
           <img src="assets/img/communs/cuisine-pivoines-poele-1280.webp" srcset="assets/img/communs/cuisine-pivoines-poele-640.webp 640w, assets/img/communs/cuisine-pivoines-poele-1280.webp 1280w, assets/img/communs/cuisine-pivoines-poele-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 90vw" width="2362" height="1772" alt="La cuisine, sa grande table et le poêle" loading="lazy" decoding="async">
@@ -243,7 +254,7 @@
           <img src="assets/img/jardin/verger-pratique-plein-air-1280.webp" srcset="assets/img/jardin/verger-pratique-plein-air-640.webp 640w, assets/img/jardin/verger-pratique-plein-air-1280.webp 1280w, assets/img/jardin/verger-pratique-plein-air-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 90vw" width="3264" height="2448" alt="Une personne en pratique au milieu du verger fleuri" loading="lazy" decoding="async">
           <div><h3>Verger et potager</h3>
           <p>Un jardin-verger de 1 000 m² ceint de murs de pierre sèche, un potager permaculturel et un espace ouvert pour la pratique en plein air.</p>
-          <p class="cfiche-cote">Espace de pratique extérieur : 100 ou 200 m² selon les pages du site actuel, à confirmer.</p></div>
+          <p class="cfiche-cote">Espace de pratique extérieur : 100 ou 200 m² selon les pages du site actuel, <mark class="a-completer">à confirmer</mark>.</p></div>
         </article>
       </div>
     </div>
@@ -281,7 +292,7 @@
         <div class="formule-texte">
           <h3>Pension complète</h3>
           <p>Vous venez vous faire chouchouter et vous concentrer sur vos activités : Joël et Emmanuelle sont aux manettes de la cuisine. Bons petits plats végétariens, cuisine bio et locale, demandes spécifiques entendues (allergies, intolérances).</p>
-          <p class="formule-prix">Tarif : à compléter</p>
+          <p class="formule-prix">Tarif : <mark class="a-completer">à compléter</mark></p>
         </div>
       </article>
       <article class="formule incline">
@@ -289,7 +300,7 @@
         <div class="formule-texte">
           <h3>Gestion libre</h3>
           <p>Vous louez la maison entière sans la prestation gourmande et gérez vous-mêmes la préparation des repas, dans la grande cuisine équipée.</p>
-          <p class="formule-prix">Tarif : à compléter</p>
+          <p class="formule-prix">Tarif : <mark class="a-completer">à compléter</mark></p>
         </div>
       </article>
     </div>
@@ -327,7 +338,7 @@
     <div class="chambres-piste" data-hscroll>
       <header class="chambres-tete">
         <h2 class="titre titre-clair" id="titre-chambres" data-split>Les chambres</h2>
-        <p>Entre 8 et 15 personnes, accueillies dans des chambres vastes et confortables, chacune avec sa salle de bain. Noms et couchages de chaque chambre : à compléter.</p>
+        <p>Entre 8 et 15 personnes, accueillies dans des chambres vastes et confortables, chacune avec sa salle de bain. Noms et couchages de chaque chambre : <mark class="a-completer">à compléter</mark>. <span class="si-tactile">Faites glisser les images.</span></p>
       </header>
       <figure class="chambre incline"><img src="assets/img/chambres/chambre-bleue-lit-double-1280.webp" srcset="assets/img/chambres/chambre-bleue-lit-double-640.webp 640w, assets/img/chambres/chambre-bleue-lit-double-1280.webp 1280w, assets/img/chambres/chambre-bleue-lit-double-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 80vw" width="4032" height="3024" alt="Chambre aux murs bleus et papier peint fleuri, lit double" loading="lazy" decoding="async"><figcaption>Murs bleus, lit double</figcaption></figure>
       <figure class="chambre incline"><img src="assets/img/chambres/chambre-verte-trois-lits-1280.webp" srcset="assets/img/chambres/chambre-verte-trois-lits-640.webp 640w, assets/img/chambres/chambre-verte-trois-lits-1280.webp 1280w, assets/img/chambres/chambre-verte-trois-lits-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 80vw" width="4032" height="3024" alt="Chambre au papier peint vert, trois lits simples" loading="lazy" decoding="async"><figcaption>Papier peint vert, trois lits</figcaption></figure>
@@ -342,7 +353,10 @@
 
   <!-- 8. Témoignages d'enseignants -->
   <section class="temoins" id="temoins" aria-labelledby="titre-temoins">
-    <h2 class="titre" id="titre-temoins" data-split>Ils y ont animé leurs stages</h2>
+    <div class="temoins-tete">
+      <h2 class="titre" id="titre-temoins" data-split>Ils y ont animé leurs stages</h2>
+      <button class="btn btn-contour btn-pause" type="button" data-flux-pause aria-pressed="false"><span>Mettre en pause le défilement</span></button>
+    </div>
     <div class="temoins-flux" data-flux>
       <figure class="temoin"><blockquote><p>Quelle chance, quelle joie d’avoir trouvé la perle que vous êtes et la merveille de lieu que vous avez créé.</p></blockquote><figcaption>Diane Taieb, formatrice certifiée en ennéagramme et méditation pleine conscience</figcaption></figure>
       <figure class="temoin"><blockquote><p>Un séjour divin chez Emmanuelle et Joël qui sont d’une ouverture de cœur et de divins cuisiniers.</p></blockquote><figcaption>Sreemati, professeure de yoga</figcaption></figure>
@@ -355,10 +369,10 @@
 
   <!-- 9. Demande de disponibilité -->
   <section class="demande" id="demande" aria-labelledby="titre-demande">
-    <div class="demande-fond" aria-hidden="true"><img src="assets/img/jardin/hamac-sous-le-cerisier-1280.webp" srcset="assets/img/jardin/hamac-sous-le-cerisier-640.webp 640w, assets/img/jardin/hamac-sous-le-cerisier-1280.webp 1280w, assets/img/jardin/hamac-sous-le-cerisier-1920.webp 1920w" sizes="100vw" width="2362" height="1578" alt="" loading="lazy" decoding="async"></div>
+    <div class="demande-fond" aria-hidden="true"><img src="assets/img/jardin/hamac-sous-le-cerisier-1280.webp" srcset="assets/img/jardin/hamac-sous-le-cerisier-640.webp 640w, assets/img/jardin/hamac-sous-le-cerisier-1280.webp 1280w, assets/img/jardin/hamac-sous-le-cerisier-1920.webp 1920w" sizes="60vw" width="2362" height="1578" alt="" loading="lazy" decoding="async"></div>
     <div class="demande-carte">
       <h2 class="titre" id="titre-demande">Demander une disponibilité</h2>
-      <p class="demande-intro">Cinq questions, deux minutes. Joël et Emmanuelle vous rappellent pour construire le stage avec vous.</p>
+      <p class="demande-intro">Cinq questions, deux minutes. Joël et Emmanuelle vous recontactent pour construire le stage avec vous.</p>
       <div class="riviere-progres" aria-hidden="true"><svg viewBox="0 0 600 40" preserveAspectRatio="none"><path class="rp-lit" d="M0 20 C 60 4 120 36 180 20 S 300 4 360 20 S 480 36 540 20 S 600 10 600 20"/><path class="rp-eau" d="M0 20 C 60 4 120 36 180 20 S 300 4 360 20 S 480 36 540 20 S 600 10 600 20"/></svg></div>
       <p class="demande-etape-num" aria-live="polite">Étape 1 sur 5</p>
       <form class="formulaire" data-formulaire novalidate>
@@ -376,10 +390,10 @@
         </fieldset>
         <fieldset class="pas" data-pas="2" hidden>
           <legend>Vos dates</legend>
-          <p class="aide">Choisissez le jour d’arrivée puis le jour de départ. Les disponibilités réelles vous seront confirmées par téléphone.</p>
+          <p class="aide">Choisissez le jour d’arrivée puis le jour de départ (au clavier : flèches puis Entrée). Les disponibilités réelles vous seront confirmées par téléphone.</p>
           <div class="calendrier" data-calendrier>
             <div class="cal-tete"><button type="button" class="cal-nav" data-cal="-1" aria-label="Mois précédent">‹</button><p class="cal-mois" aria-live="polite"></p><button type="button" class="cal-nav" data-cal="1" aria-label="Mois suivant">›</button></div>
-            <div class="cal-jours" role="grid"></div>
+            <div class="cal-jours" role="group" aria-label="Jours du mois"></div>
           </div>
           <p class="cal-resume" aria-live="polite">Aucune date choisie.</p>
           <input type="hidden" name="arrivee"><input type="hidden" name="depart">
@@ -412,7 +426,7 @@
           <label class="champ"><span>Téléphone</span><input type="tel" name="tel" autocomplete="tel"></label>
           <div class="recap" data-recap></div>
         </fieldset>
-        <p class="form-erreur" role="alert"></p>
+        <p class="form-erreur" id="form-erreur" role="alert"></p>
         <div class="form-nav">
           <button type="button" class="btn btn-contour" data-prec hidden><span>Retour</span></button>
           <button type="button" class="btn btn-plein magnetique" data-suiv><span>Continuer</span></button>
@@ -455,7 +469,7 @@
   </figure>
   <div class="pied-grille">
     <div class="pied-col">
-      <img class="pied-logo" src="assets/img/logo/logo-clair.png" alt="L'Atelier des Sources" width="678" height="331" loading="lazy">
+      <img class="pied-logo" src="assets/img/logo/logo-clair-300.webp" alt="L'Atelier des Sources" width="300" height="146" loading="lazy">
       <p>5 route de Vicq<br>86260 Angles-sur-l’Anglin<br>Vienne, Nouvelle-Aquitaine</p>
     </div>
     <div class="pied-col">
@@ -484,7 +498,7 @@
   </div>
   <div class="pied-bas">
     <p>Maquette de démonstration. Formulaires simulés : aucun message n’est envoyé.</p>
-    <p><a class="lien" href="#mentions" data-a-completer>Mentions légales (à compléter)</a> <a class="lien" href="#confidentialite" data-a-completer>Données personnelles (à compléter)</a></p>
+    <p><a class="lien" href="mentions-legales.html">Mentions légales</a> <a class="lien" href="mentions-legales.html#donnees">Données personnelles</a></p>
     <p>Crédit photo : Nathalie Frennet, Retraite Lunatiq, et L’Atelier des Sources. Images marquées « illustration » : générées, à remplacer.</p>
   </div>
 </footer>

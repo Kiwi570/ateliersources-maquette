@@ -72,10 +72,13 @@ export function initRiviere() {
   }
 
   let t = 0, k = 0;
+  // la libellule se pose (disparaît) au-dessus des galeries épinglées et du plan, qui ont leur propre mouvement
+  const zonesCalmes = qsa('.journee, .chambres, .village');
   const teinte = () => {
     const y = pos.y - window.scrollY;
-    const sombre = sombres.some((s) => { const r = s.getBoundingClientRect(); return r.top < y && r.bottom > y; });
-    vol.classList.toggle('sur-sombre', sombre);
+    const dans = (s) => { const r = s.getBoundingClientRect(); return r.top < y && r.bottom > y; };
+    vol.classList.toggle('sur-sombre', sombres.some(dans));
+    vol.classList.toggle('is-posee', zonesCalmes.some(dans));
   };
   gsap.ticker.add(() => {
     t += 0.016;

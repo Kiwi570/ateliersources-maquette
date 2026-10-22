@@ -9,11 +9,15 @@
 <meta property="og:description" content="Un lieu de stages et de retraites dédié au bien-être et au ressourcement, à Angles-sur-l'Anglin.">
 <meta property="og:image" content="assets/img/village/brume-vue-de-la-maison-1280.webp">
 <meta name="theme-color" content="#0E262A">
-<link rel="icon" href="assets/img/logo/logo.png">
+<link rel="icon" type="image/png" href="assets/img/logo/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/img/logo/apple-touch-icon.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LodgingBusiness","name":"L'Atelier des Sources","description":"Lieu de stages et de retraites bien-être et chambres d'hôtes à Angles-sur-l'Anglin.","address":{"@type":"PostalAddress","streetAddress":"5 route de Vicq","postalCode":"86260","addressLocality":"Angles-sur-l'Anglin","addressRegion":"Vienne","addressCountry":"FR"},"telephone":["+33785831652","+33680074788"],"email":"contact@ateliersources.com","sameAs":["https://www.facebook.com/ateliersources/","https://www.instagram.com/ateliersources/"]}
+</script>
 <link rel="preload" href="assets/fonts/fraunces-var.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="assets/fonts/instrument-sans-var.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
-<script>document.documentElement.className='js';try{if(localStorage.getItem('ads-calme')==='1'||matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('is-calme')}catch(e){}</script>
+<script>document.documentElement.className='js';(function(){var r=matchMedia('(prefers-reduced-motion: reduce)').matches,c=null;try{c=localStorage.getItem('ads-calme')}catch(e){}if(c==='1'||(c!=='0'&&r))document.documentElement.classList.add('is-calme')})()</script>
 </head>
 <body data-page="accueil">
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -66,8 +70,8 @@
 
 <header class="barre">
   <a class="barre-logo" href="index.html" aria-label="L'Atelier des Sources, accueil">
-    <img class="logo-sombre" src="assets/img/logo/logo.png" alt="" width="678" height="331">
-    <img class="logo-clair" src="assets/img/logo/logo-clair.png" alt="" width="678" height="331">
+    <img class="logo-sombre" src="assets/img/logo/logo-300.webp" alt="" width="300" height="146">
+    <img class="logo-clair" src="assets/img/logo/logo-clair-300.webp" alt="" width="300" height="146">
   </a>
   <nav class="barre-nav" aria-label="Navigation principale">
     <a class="lien" href="index.html#maison">Le lieu</a>
@@ -76,14 +80,14 @@
     <a class="lien" href="index.html#venir">Venir</a>
   </nav>
   <div class="barre-outils">
-    <button class="outil outil-son" type="button" aria-pressed="false" data-son>
+    <button class="outil outil-son" type="button" aria-pressed="false" aria-label="Son d'ambiance" data-son>
       <span class="outil-ondes" aria-hidden="true"><i></i><i></i><i></i></span>
       <span class="outil-texte">Son</span>
     </button>
     <button class="outil outil-calme" type="button" aria-pressed="false" data-calme>
       <span class="outil-texte">Mode calme</span>
     </button>
-    <a class="btn btn-plein magnetique barre-cta" href="organiser-un-stage.html#demande"><span>Demander une disponibilité</span></a>
+    <a class="btn btn-plein magnetique barre-cta" href="organiser-un-stage.html#demande"><span class="cta-long">Demander une disponibilité</span><span class="cta-court">Disponibilités</span></a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="menu" data-burger><span></span><span></span><span class="sr">Menu</span></button>
   </div>
 </header>
@@ -97,7 +101,10 @@
     <a href="index.html#venir">Venir</a>
     <a href="organiser-un-stage.html#demande">Demander une disponibilité</a>
   </nav>
-  <p class="menu-contact"><a href="tel:+33785831652">07 85 83 16 52</a> <a href="tel:+33680074788">06 80 07 47 88</a></p>
+  <div class="menu-bas">
+    <button class="outil menu-calme" type="button" aria-pressed="false" data-calme><span class="outil-texte">Mode calme : réduire les animations</span></button>
+    <p class="menu-contact"><a href="tel:+33785831652">07 85 83 16 52</a> <a href="tel:+33680074788">06 80 07 47 88</a></p>
+  </div>
 </div>
 
 <svg class="riviere" aria-hidden="true"><path class="riviere-lit"/><path class="riviere-eau"/></svg>
@@ -108,11 +115,11 @@
 
   <!-- 1. Ouverture -->
   <section class="ouverture" id="ouverture" data-theme="sombre" aria-labelledby="titre-ouverture">
-    <div class="ouverture-media" data-eau
-         data-src="assets/img/village/brume-vue-de-la-maison-2560.webp"
-         data-src-mobile="assets/img/village/brume-vue-de-la-maison-1920.webp"
-         data-focus="0.5 0.8" data-focus-mobile="0.62 0.82" data-zoom="1.3" data-zoom-mobile="1.45">
-      <img src="assets/img/village/brume-vue-de-la-maison-1280.webp" srcset="assets/img/village/brume-vue-de-la-maison-640.webp 640w, assets/img/village/brume-vue-de-la-maison-1280.webp 1280w, assets/img/village/brume-vue-de-la-maison-1920.webp 1920w, assets/img/village/brume-vue-de-la-maison-2560.webp 2560w" sizes="100vw" width="4801" height="2395" alt="Le village d'Angles-sur-l'Anglin dans la brume du matin, vu de la maison" loading="eager" fetchpriority="high" decoding="async" class="ouverture-img">
+    <div class="ouverture-media" data-eau data-focus="0.5 0.8" data-zoom="1.3">
+      <picture>
+        <source media="(max-width: 899px) and (orientation: portrait)" srcset="assets/img/village/brume-mobile-720.webp 720w, assets/img/village/brume-mobile-1080.webp 1032w" sizes="100vw">
+        <img src="assets/img/village/brume-vue-de-la-maison-1280.webp" srcset="assets/img/village/brume-vue-de-la-maison-640.webp 640w, assets/img/village/brume-vue-de-la-maison-1280.webp 1280w, assets/img/village/brume-vue-de-la-maison-1920.webp 1920w, assets/img/village/brume-vue-de-la-maison-2560.webp 2560w" sizes="100vw" width="4801" height="2395" alt="Le village d'Angles-sur-l'Anglin dans la brume du matin, vu de la maison" loading="eager" fetchpriority="high" decoding="async" class="ouverture-img">
+      </picture>
       <canvas class="eau-canvas" aria-hidden="true"></canvas>
     </div>
     <div class="ouverture-voile" aria-hidden="true"></div>
@@ -172,7 +179,7 @@
     <div class="journee-piste" data-hscroll>
       <header class="journee-tete">
         <h2 class="titre titre-clair" id="titre-journee" data-split>Une journée ici</h2>
-        <p>De la pratique du matin aux soirées au coin du feu, la maison suit le rythme de votre stage. Faites défiler.</p>
+        <p>De la pratique du matin aux soirées au coin du feu, la maison suit le rythme de votre stage. <span class="si-souris">Faites défiler la page.</span><span class="si-tactile">Faites glisser les images.</span></p>
       </header>
       <article class="moment" data-ciel="#2B4A52">
         <figure><img src="assets/img/salle/grande-salle-groupe-postures-1280.webp" srcset="assets/img/salle/grande-salle-groupe-postures-640.webp 640w, assets/img/salle/grande-salle-groupe-postures-1280.webp 1280w, assets/img/salle/grande-salle-groupe-postures-1920.webp 1920w" sizes="(min-width: 900px) 46vw, 85vw" width="4032" height="3024" alt="Un groupe en pratique de yoga dans la grande salle" loading="lazy" decoding="async"></figure>
@@ -181,21 +188,21 @@
           <p>La grande salle sous les combles, isolée en laine de bois, garde une bonne température toute l’année. Sono, vidéoprojecteur, tapis, zafus, briques, sangles et couvertures sont sur place.</p>
         </div>
       </article>
-      <article class="moment" data-ciel="#4E6E5A">
+      <article class="moment" data-ciel="#3F5C4B">
         <figure><img src="assets/img/jardin/facade-lierre-repas-cour-1280.webp" srcset="assets/img/jardin/facade-lierre-repas-cour-640.webp 640w, assets/img/jardin/facade-lierre-repas-cour-1280.webp 1249w" sizes="(min-width: 900px) 46vw, 85vw" width="1249" height="785" alt="Un repas dans la cour, devant la façade couverte de vigne vierge" loading="lazy" decoding="async"></figure>
         <div class="moment-texte">
           <h3>À midi, la table</h3>
           <p>Aux beaux jours, les repas se prennent dans la cour, à l’ombre des bambous et de l’olivier. L’hiver, autour de la table de monastère de la salle à manger.</p>
         </div>
       </article>
-      <article class="moment" data-ciel="#3E6B5E">
+      <article class="moment" data-ciel="#335A4F">
         <figure><img src="assets/img/village/baignade-anglin-1280.webp" srcset="assets/img/village/baignade-anglin-640.webp 640w, assets/img/village/baignade-anglin-1280.webp 1258w" sizes="(min-width: 900px) 46vw, 85vw" width="1258" height="589" alt="Une baignade dans l'eau claire de l'Anglin" loading="lazy" decoding="async"></figure>
         <div class="moment-texte">
           <h3>L’après-midi, l’Anglin</h3>
           <p>Points de vue en haut des falaises, balades le long des chemins bordés de murets, baignades avec les libellules aux beaux jours. Joël et Emmanuelle connaissent toutes les balades du coin.</p>
         </div>
       </article>
-      <article class="moment" data-ciel="#8A5A3A">
+      <article class="moment" data-ciel="#74482C">
         <figure><img src="assets/img/jardin/hamac-sous-le-cerisier-1280.webp" srcset="assets/img/jardin/hamac-sous-le-cerisier-640.webp 640w, assets/img/jardin/hamac-sous-le-cerisier-1280.webp 1280w, assets/img/jardin/hamac-sous-le-cerisier-1920.webp 1920w" sizes="(min-width: 900px) 46vw, 85vw" width="2362" height="1578" alt="Un hamac sous le cerisier du verger" loading="lazy" decoding="async"></figure>
         <div class="moment-texte">
           <h3>En fin de journée, le verger</h3>
@@ -259,7 +266,7 @@
         <ul class="table-liste">
           <li><strong>Pension complète</strong> : nous sommes aux manettes de la cuisine, vous vous concentrez sur votre stage.</li>
           <li><strong>Gestion libre</strong> : vous louez la maison entière et préparez vous-mêmes vos repas.</li>
-          <li><strong>Allergies et intolérances</strong> : dites-le-nous, nous adaptons les menus. Détail des allergènes : à compléter.</li>
+          <li><strong>Allergies et intolérances</strong> : dites-le-nous, nous adaptons les menus. Détail des allergènes : <mark class="a-completer">à compléter</mark>.</li>
         </ul>
       </header>
       <figure class="table-a pousse-img"><img src="assets/img/hotes/emmanuelle-joel-en-cuisine-1280.webp" srcset="assets/img/hotes/emmanuelle-joel-en-cuisine-640.webp 640w, assets/img/hotes/emmanuelle-joel-en-cuisine-1280.webp 873w" sizes="(min-width: 900px) 34vw, 90vw" width="873" height="705" alt="Emmanuelle et Joël aux fourneaux, en riant" loading="lazy" decoding="async"></figure>
@@ -287,29 +294,35 @@
         <g class="carte-chemins"><path d="M300 360 C 320 300 360 250 420 230"/><path d="M590 430 C 600 500 640 540 700 560"/></g>
         <use class="carte-libellule" href="#libellule" width="44" height="44" x="-22" y="-22"/>
       </svg>
-      <button class="repere is-active" style="--x:42%;--y:36%" data-repere="maison" aria-pressed="true"><span class="repere-point"></span><span class="repere-nom">L’Atelier des Sources</span></button>
-      <button class="repere repere-gauche" style="--x:66%;--y:17%" data-repere="forteresse" aria-pressed="false"><span class="repere-point"></span><span class="repere-nom">La forteresse</span></button>
-      <button class="repere" style="--x:30%;--y:62%" data-repere="roc" aria-pressed="false"><span class="repere-point"></span><span class="repere-nom">Le Roc-aux-Sorciers</span></button>
-      <button class="repere repere-gauche" style="--x:82%;--y:44%" data-repere="baignade" aria-pressed="false"><span class="repere-point"></span><span class="repere-nom">Baignades et balades</span></button>
+      <button class="repere is-active" style="--x:42%;--y:36%" data-repere="maison" aria-pressed="true" aria-controls="fiche-maison"><span class="repere-point" data-num="1"></span><span class="repere-nom">L’Atelier des Sources</span></button>
+      <button class="repere repere-gauche" style="--x:66%;--y:17%" data-repere="forteresse" aria-pressed="false" aria-controls="fiche-forteresse"><span class="repere-point" data-num="2"></span><span class="repere-nom">La forteresse</span></button>
+      <button class="repere" style="--x:30%;--y:62%" data-repere="roc" aria-pressed="false" aria-controls="fiche-roc"><span class="repere-point" data-num="3"></span><span class="repere-nom">Le Roc-aux-Sorciers</span></button>
+      <button class="repere repere-gauche" style="--x:82%;--y:44%" data-repere="baignade" aria-pressed="false" aria-controls="fiche-baignade"><span class="repere-point" data-num="4"></span><span class="repere-nom">Baignades et balades</span></button>
       <p class="carte-note">Plan schématique, non à l’échelle.</p>
      </div>
-      <div class="fiches">
-        <article class="fiche is-active" data-fiche="maison">
+      <ol class="carte-legende" aria-label="Lieux du plan">
+        <li><button type="button" data-repere="maison" aria-pressed="true" aria-controls="fiche-maison"><span class="num">1</span>L’Atelier des Sources</button></li>
+        <li><button type="button" data-repere="forteresse" aria-pressed="false" aria-controls="fiche-forteresse"><span class="num">2</span>La forteresse</button></li>
+        <li><button type="button" data-repere="roc" aria-pressed="false" aria-controls="fiche-roc"><span class="num">3</span>Le Roc-aux-Sorciers</button></li>
+        <li><button type="button" data-repere="baignade" aria-pressed="false" aria-controls="fiche-baignade"><span class="num">4</span>Baignades et balades</button></li>
+      </ol>
+      <div class="fiches" aria-live="polite">
+        <article class="fiche is-active" data-fiche="maison" id="fiche-maison">
           <img src="assets/img/village/ruelle-village-1280.webp" srcset="assets/img/village/ruelle-village-640.webp 640w, assets/img/village/ruelle-village-1280.webp 1280w, assets/img/village/ruelle-village-1920.webp 1920w" sizes="(min-width: 900px) 26vw, 80vw" width="5976" height="3992" alt="Une ruelle du village, ses murs de pierre et ses jardins" loading="lazy" decoding="async">
           <h3>L’Atelier des Sources</h3>
           <p>La maison est au village : ruelles et jardins enchevêtrés, ruines du château, rivière à l’eau pure, tout se découvre à pied.</p>
         </article>
-        <article class="fiche" data-fiche="forteresse">
+        <article class="fiche" data-fiche="forteresse" id="fiche-forteresse">
           <img src="assets/img/village/forteresse-falaise-1280.webp" srcset="assets/img/village/forteresse-falaise-640.webp 640w, assets/img/village/forteresse-falaise-1280.webp 1024w" sizes="(min-width: 900px) 26vw, 80vw" width="1024" height="768" alt="Les ruines de la forteresse sur la falaise" loading="lazy" decoding="async">
           <h3>La forteresse</h3>
           <p>Ses ruines du XIe siècle dominent une rivière à l’eau pure et joyeuse.</p>
         </article>
-        <article class="fiche" data-fiche="roc">
+        <article class="fiche" data-fiche="roc" id="fiche-roc">
           <img src="assets/img/village/roc-aux-sorciers-bas-reliefs-1280.webp" srcset="assets/img/village/roc-aux-sorciers-bas-reliefs-640.webp 640w, assets/img/village/roc-aux-sorciers-bas-reliefs-1280.webp 944w" sizes="(min-width: 900px) 26vw, 80vw" width="944" height="609" alt="Bas-reliefs préhistoriques d'animaux sculptés dans la roche" loading="lazy" decoding="async">
           <h3>Le Roc-aux-Sorciers</h3>
-          <p>Une frise sculptée de 20 mètres, visible dans le musée du Roc-aux-Sorciers. Crédit photo : à vérifier.</p>
+          <p>Une frise sculptée de 20 mètres, visible dans le musée du Roc-aux-Sorciers. Crédit photo : <mark class="a-completer">à vérifier</mark>.</p>
         </article>
-        <article class="fiche" data-fiche="baignade">
+        <article class="fiche" data-fiche="baignade" id="fiche-baignade">
           <img src="assets/img/village/anglin-sous-les-arbres-1280.webp" srcset="assets/img/village/anglin-sous-les-arbres-640.webp 640w, assets/img/village/anglin-sous-les-arbres-1280.webp 1280w" sizes="(min-width: 900px) 26vw, 80vw" width="1280" height="960" alt="Un bord de l'Anglin sous les arbres" loading="lazy" decoding="async">
           <h3>L’Anglin</h3>
           <p>Baignades aux beaux jours, balades bucoliques, vues du haut des falaises. Aux environs : la Gartempe, la Creuse, le parc naturel régional de la Brenne, l’abbaye de Saint-Savin, inscrite au patrimoine mondial de l’Unesco.</p>
@@ -370,7 +383,7 @@
         <div class="prochain-fond"><img src="assets/img/ia/programme-silhouettes-aube-1280.webp" srcset="assets/img/ia/programme-silhouettes-aube-640.webp 640w, assets/img/ia/programme-silhouettes-aube-1280.webp 1280w, assets/img/ia/programme-silhouettes-aube-1920.webp 1536w" sizes="(min-width: 900px) 40vw, 90vw" width="1536" height="1024" alt="" loading="lazy" decoding="async"></div>
         <div class="prochain-contenu" data-a-venir>
           <h3>Prochaines dates</h3>
-          <p class="prochain-vide">Le calendrier des prochains stages est à compléter.</p>
+          <p class="prochain-vide">Le calendrier des prochains stages est <mark class="a-completer">à compléter</mark>.</p>
           <a class="btn btn-clair magnetique" href="#lettre-email"><span>Être prévenu par la lettre d’information</span></a>
         </div>
         <p class="illustration">Illustration</p>
@@ -378,6 +391,7 @@
       <div class="passes">
         <h3 class="passes-titre">Ils sont déjà venus</h3>
         <ol class="frise" data-passes></ol>
+        <button class="btn btn-contour passes-plus" type="button" data-passes-plus aria-expanded="false" hidden><span>Voir tous les stages passés</span></button>
         <noscript><p>Liste des stages passés : activez JavaScript pour l’afficher.</p></noscript>
       </div>
     </div>
@@ -420,8 +434,9 @@
     </div>
     <div class="citations-nav">
       <button class="btn btn-contour-clair" type="button" data-cit-prec><span>Précédent</span></button>
-      <span class="citations-compte" aria-live="polite"></span>
+      <span class="citations-compte"></span>
       <button class="btn btn-contour-clair" type="button" data-cit-suiv><span>Suivant</span></button>
+      <button class="btn btn-contour-clair btn-pause" type="button" data-cit-pause aria-pressed="false"><span>Pause</span></button>
       <a class="lien lien-clair" href="https://urls.fr/Xq8r8P" target="_blank" rel="noopener">Lire nos avis Google</a>
     </div>
   </section>
@@ -440,8 +455,8 @@
         <li class="ligne-arret ligne-fin"><strong>L’Atelier des Sources</strong><span>5 route de Vicq, 86260 Angles-sur-l’Anglin</span></li>
       </ol>
       <p class="venir-contact">
-        <a class="btn btn-plein magnetique" href="tel:+33785831652"><span>Appeler Joël : 07 85 83 16 52</span></a>
-        <a class="btn btn-contour magnetique" href="tel:+33680074788"><span>Appeler Emmanuelle : 06 80 07 47 88</span></a>
+        <a class="btn btn-plein magnetique" href="tel:+33785831652"><span>Appeler Joël : <span class="nowrap">07 85 83 16 52</span></span></a>
+        <a class="btn btn-contour magnetique" href="tel:+33680074788"><span>Appeler Emmanuelle : <span class="nowrap">06 80 07 47 88</span></span></a>
       </p>
       <p class="illustration">Image de fond : illustration.</p>
     </div>
@@ -462,7 +477,7 @@
   </figure>
   <div class="pied-grille">
     <div class="pied-col">
-      <img class="pied-logo" src="assets/img/logo/logo-clair.png" alt="L'Atelier des Sources" width="678" height="331" loading="lazy">
+      <img class="pied-logo" src="assets/img/logo/logo-clair-300.webp" alt="L'Atelier des Sources" width="300" height="146" loading="lazy">
       <p>5 route de Vicq<br>86260 Angles-sur-l’Anglin<br>Vienne, Nouvelle-Aquitaine</p>
     </div>
     <div class="pied-col">
@@ -491,7 +506,7 @@
   </div>
   <div class="pied-bas">
     <p>Maquette de démonstration. Formulaires simulés : aucun message n’est envoyé.</p>
-    <p><a class="lien" href="#mentions" data-a-completer>Mentions légales (à compléter)</a> <a class="lien" href="#confidentialite" data-a-completer>Données personnelles (à compléter)</a></p>
+    <p><a class="lien" href="mentions-legales.html">Mentions légales</a> <a class="lien" href="mentions-legales.html#donnees">Données personnelles</a></p>
     <p>Crédit photo : Nathalie Frennet, Retraite Lunatiq, et L’Atelier des Sources. Images marquées « illustration » : générées, à remplacer.</p>
   </div>
 </footer>

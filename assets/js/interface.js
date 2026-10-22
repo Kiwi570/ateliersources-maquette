@@ -16,20 +16,16 @@ export function rideauFermer() {
 function barre() {
   const b = qs('.barre');
   const sombres = qsa('[data-theme="sombre"]');
-  let dernierY = window.scrollY, raf = 0;
+  let raf = 0;
   const maj = () => {
     raf = 0;
     const y = window.scrollY, h = b.offsetHeight / 2;
     const sombre = sombres.some((s) => { const r = s.getBoundingClientRect(); return r.top <= h && r.bottom >= h; });
     b.classList.toggle('is-sombre', sombre);
     b.classList.toggle('is-fond', y > window.innerHeight * 0.7);
-    const menuOuvert = document.documentElement.classList.contains('menu-ouvert');
-    if (!menuOuvert) b.classList.toggle('is-cachee', y > 500 && y > dernierY + 4);
-    if (y < dernierY - 4) b.classList.remove('is-cachee');
-    dernierY = y;
+
   };
   window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(maj); }, { passive: true });
-  b.addEventListener('focusin', () => b.classList.remove('is-cachee'));
   maj();
 }
 
@@ -89,7 +85,13 @@ function liens() {
       e.preventDefault();
       const y = el.getBoundingClientRect().top + window.scrollY;
       if (el.matches('input')) { defilerVers(y - window.innerHeight / 2); setTimeout(() => el.focus({ preventScroll: true }), 1100); }
-      else defilerVers(y);
+      else {
+        defilerVers(y);
+        // le focus suit le lien (lien d'évitement, ancres) pour la navigation au clavier
+        const cible = el.querySelector('h1, h2') || el;
+        if (!cible.hasAttribute('tabindex')) cible.setAttribute('tabindex', '-1');
+        cible.focus({ preventScroll: true });
+      }
       history.replaceState(null, '', '#' + ancre);
       return;
     }
