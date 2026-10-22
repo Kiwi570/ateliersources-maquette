@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Organiser un stage · L’Atelier des Sources, Angles-sur-l’Anglin</title>
+<meta name="description" content="Accueil de stages et de retraites pour 8 à 15 personnes : salle de pratique sous les combles, chambres avec salle de bain, pension complète végétarienne ou gestion libre, sauna. Demandez une disponibilité.">
+<meta property="og:title" content="Organiser un stage à l'Atelier des Sources">
+<meta property="og:image" content="assets/img/salle/grande-salle-vide-charpente-1280.webp">
+<meta name="theme-color" content="#0E262A">
+<link rel="icon" href="assets/img/logo/logo.png">
+<link rel="preload" href="assets/fonts/fraunces-var.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-sans-var.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css">
+<script>document.documentElement.className='js';try{if(localStorage.getItem('ads-calme')==='1'||matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('is-calme')}catch(e){}</script>
+</head>
+<body data-page="organiser">
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="f-eau" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.03" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="f-reflet" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.004 0.06" numOctaves="2" seed="9" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="f-chaleur" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="turbulence" baseFrequency="0.01 0.05" numOctaves="1" seed="2" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <symbol id="libellule" viewBox="0 0 120 120">
+      <g class="ailes">
+        <ellipse class="aile aile-hg" cx="38" cy="50" rx="34" ry="8" transform="rotate(-14 60 52)"/>
+        <ellipse class="aile aile-hd" cx="82" cy="50" rx="34" ry="8" transform="rotate(14 60 52)"/>
+        <ellipse class="aile aile-bg" cx="40" cy="62" rx="30" ry="7" transform="rotate(10 60 60)"/>
+        <ellipse class="aile aile-bd" cx="80" cy="62" rx="30" ry="7" transform="rotate(-10 60 60)"/>
+      </g>
+      <g class="corps">
+        <circle cx="60" cy="40" r="5.2"/>
+        <ellipse cx="60" cy="52" rx="4.6" ry="8"/>
+        <path d="M60 58 C61.6 74 61.2 92 60 112 C58.8 92 58.4 74 60 58 Z"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="intro" aria-hidden="true">
+  <svg class="intro-eau" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+    <circle class="intro-goutte" cx="200" cy="-20" r="5"/>
+    <circle class="intro-onde" cx="200" cy="200" r="2"/>
+    <circle class="intro-onde" cx="200" cy="200" r="2"/>
+    <circle class="intro-onde" cx="200" cy="200" r="2"/>
+  </svg>
+  <img class="intro-logo" src="assets/img/logo/logo-clair.png" alt="" width="678" height="331">
+</div>
+
+<div class="rideau" aria-hidden="true">
+  <svg class="rideau-vague" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 120 L0 60 Q 180 0 360 60 T 720 60 T 1080 60 T 1440 60 L1440 120 Z"/></svg>
+</div>
+
+<div class="curseur" aria-hidden="true"><span class="curseur-point"></span><span class="curseur-label"></span></div>
+
+<header class="barre">
+  <a class="barre-logo" href="index.html" aria-label="L'Atelier des Sources, accueil">
+    <img class="logo-sombre" src="assets/img/logo/logo.png" alt="" width="678" height="331">
+    <img class="logo-clair" src="assets/img/logo/logo-clair.png" alt="" width="678" height="331">
+  </a>
+  <nav class="barre-nav" aria-label="Navigation principale">
+    <a class="lien" href="index.html#maison">Le lieu</a>
+    <a class="lien" href="organiser-un-stage.html">Organiser un stage</a>
+    <a class="lien" href="index.html#programme">Programme</a>
+    <a class="lien" href="index.html#venir">Venir</a>
+  </nav>
+  <div class="barre-outils">
+    <button class="outil outil-son" type="button" aria-pressed="false" data-son>
+      <span class="outil-ondes" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="outil-texte">Son</span>
+    </button>
+    <button class="outil outil-calme" type="button" aria-pressed="false" data-calme>
+      <span class="outil-texte">Mode calme</span>
+    </button>
+    <a class="btn btn-plein magnetique barre-cta" href="organiser-un-stage.html#demande"><span>Demander une disponibilité</span></a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu" data-burger><span></span><span></span><span class="sr">Menu</span></button>
+  </div>
+</header>
+
+<div class="menu" id="menu" hidden>
+  <nav aria-label="Menu">
+    <a href="index.html#maison">Le lieu</a>
+    <a href="organiser-un-stage.html">Organiser un stage</a>
+    <a href="index.html#programme">Programme</a>
+    <a href="index.html#sauna">Le sauna</a>
+    <a href="index.html#venir">Venir</a>
+    <a href="organiser-un-stage.html#demande">Demander une disponibilité</a>
+  </nav>
+  <p class="menu-contact"><a href="tel:+33785831652">07 85 83 16 52</a> <a href="tel:+33680074788">06 80 07 47 88</a></p>
+</div>
+
+<svg class="riviere" aria-hidden="true"><path class="riviere-lit"/><path class="riviere-eau"/></svg>
+<svg class="libellule-vol" aria-hidden="true" viewBox="0 0 120 120"><use href="#libellule"/></svg>
+
+
+<main id="contenu">
+
+  <!-- 1. Ouverture -->
+  <section class="ouverture ouverture-page" id="ouverture" data-theme="sombre" aria-labelledby="titre-ouverture">
+    <div class="ouverture-media" data-eau
+         data-src="assets/img/salle/grande-salle-vide-charpente-2560.webp"
+         data-src-mobile="assets/img/salle/grande-salle-vide-charpente-1920.webp"
+         data-focus="0.5 0.5" data-focus-mobile="0.44 0.5" data-zoom="1.05">
+      <img src="assets/img/salle/grande-salle-vide-charpente-1280.webp" srcset="assets/img/salle/grande-salle-vide-charpente-640.webp 640w, assets/img/salle/grande-salle-vide-charpente-1280.webp 1280w, assets/img/salle/grande-salle-vide-charpente-1920.webp 1920w, assets/img/salle/grande-salle-vide-charpente-2560.webp 2560w" sizes="100vw" width="4032" height="3024" alt="La grande salle de pratique vide, sous la charpente en bois" loading="eager" fetchpriority="high" decoding="async" class="ouverture-img">
+      <canvas class="eau-canvas" aria-hidden="true"></canvas>
+    </div>
+    <div class="ouverture-voile" aria-hidden="true"></div>
+    <div class="ouverture-contenu">
+      <p class="ouverture-lieu">Pour les enseignants, thérapeutes et formateurs</p>
+      <h1 class="ouverture-titre" id="titre-ouverture" data-split>Organiser un stage à l’Atelier des Sources</h1>
+      <p class="ouverture-texte">Lieu intime, convivial et chaleureux, l’Atelier des Sources est un écrin de douceur dans lequel animer vos stages et retraites, toute l’année.</p>
+      <div class="ouverture-actions">
+        <a class="btn btn-clair magnetique" href="#demande"><span>Demander une disponibilité</span></a>
+        <a class="btn btn-contour-clair magnetique" href="#coupe"><span>Visiter la maison</span></a>
+      </div>
+    </div>
+    <a class="ouverture-suite" href="#pour-qui" aria-label="Descendre vers la suite"><span></span></a>
+  </section>
+
+  <!-- 2. Pour qui -->
+  <section class="pour-qui" id="pour-qui" aria-labelledby="titre-pour-qui">
+    <div class="pour-qui-texte">
+      <h2 class="titre" id="titre-pour-qui" data-split>Nous accueillons vos stages et retraites</h2>
+      <ul class="pratiques" data-pratiques>
+        <li>Professeurs de yoga</li>
+        <li>Tai-chi et pratiques douces</li>
+        <li>Thérapeutes</li>
+        <li>Instructeurs MBSR</li>
+        <li>Formateurs</li>
+        <li>Animateurs</li>
+        <li>Praticiens du bien-être</li>
+        <li>Connaissance de soi</li>
+        <li>Ressourcement</li>
+      </ul>
+      <p class="chapeau">Nous travaillons en co-construction avec vous et nous adaptons à vos besoins : horaires, spécificités alimentaires, activités parallèles. Appelez-nous, et regardons ensemble ce qu’on peut imaginer pour vous.</p>
+    </div>
+    <figure class="pour-qui-photo">
+      <img src="assets/img/salle/grande-salle-groupe-assis-1280.webp" srcset="assets/img/salle/grande-salle-groupe-assis-640.webp 640w, assets/img/salle/grande-salle-groupe-assis-1280.webp 1024w" sizes="(min-width: 900px) 42vw, 90vw" width="1024" height="768" alt="Un groupe assis sur les tapis dans la grande salle" loading="lazy" decoding="async">
+    </figure>
+  </section>
+
+  <!-- 3. La maison en coupe -->
+  <section class="coupe" id="coupe" aria-labelledby="titre-coupe">
+    <header class="tete">
+      <h2 class="titre" id="titre-coupe" data-split>La maison, étage par étage</h2>
+      <p class="chapeau">Choisissez un espace pour voir sa photo et ce qu’il offre.</p>
+    </header>
+    <div class="coupe-scene">
+      <svg class="coupe-svg" viewBox="0 0 1200 600" aria-hidden="true">
+        <g class="trait">
+          <path class="c-sol" d="M20 540 H1180"/>
+          <path class="c-maison" d="M120 540 V270 H640 V540"/>
+          <path class="c-toit" d="M96 274 L370 104 L664 274"/>
+          <path class="c-plancher" d="M120 405 H640"/>
+          <path class="c-plancher" d="M120 270 H640"/>
+          <path class="c-cloison" d="M300 540 V405 M470 540 V405 M260 405 V270 M380 405 V270 M500 405 V270"/>
+          <path class="c-charpente" d="M200 270 L370 160 L540 270 M370 160 V270 M285 215 H455"/>
+          <path class="c-dep" d="M720 540 V425 L940 395 V540"/>
+          <path class="c-cloison" d="M820 540 V412"/>
+          <path class="c-mur" d="M960 540 V500 H1180 V540"/>
+          <path class="c-arbre" d="M1010 500 V455 M1010 470 C 985 460 990 430 1010 428 C 1030 430 1035 460 1010 470"/>
+          <path class="c-arbre" d="M1080 500 V448 M1080 466 C 1052 456 1058 420 1080 418 C 1102 420 1108 456 1080 466"/>
+          <path class="c-arbre" d="M1145 500 V460 M1145 474 C 1124 466 1128 440 1145 438 C 1162 440 1166 466 1145 474"/>
+          <path class="c-arbre" d="M680 540 V488 M680 500 C 660 494 662 470 680 466 C 698 470 700 494 680 500"/>
+        </g>
+        <g class="cotes">
+          <path d="M120 580 H640"/><path d="M120 572 V588 M640 572 V588"/>
+          <text x="380" y="598">maison traditionnelle poitevine</text>
+          <path d="M80 270 V540"/><path d="M72 270 H88 M72 540 H88"/>
+          <text x="66" y="410" transform="rotate(-90 66 410)">3 niveaux</text>
+        </g>
+        <g class="pieces">
+          <g class="piece" data-piece="pratique"><path d="M150 268 L370 128 L590 268 Z"/><text x="370" y="240">Salle de pratique</text></g>
+          <g class="piece" data-piece="chambres"><rect x="122" y="272" width="516" height="131"/><text x="380" y="345">Chambres</text></g>
+          <g class="piece" data-piece="cuisine"><rect x="122" y="407" width="176" height="131"/><text x="210" y="478">Cuisine</text></g>
+          <g class="piece" data-piece="table"><rect x="302" y="407" width="166" height="131"/><text x="385" y="470">Salle à</text><text x="385" y="492">manger</text></g>
+          <g class="piece" data-piece="salon"><rect x="472" y="407" width="166" height="131"/><text x="555" y="478">Salon</text></g>
+          <g class="piece" data-piece="cour"><rect x="644" y="440" width="74" height="98"/><text x="681" y="530">Cour</text></g>
+          <g class="piece" data-piece="bien-etre"><path d="M722 538 V427 L938 397 V538 Z"/><text x="830" y="485">Espace bien-être</text></g>
+          <g class="piece" data-piece="verger"><rect x="962" y="400" width="216" height="138"/><text x="1070" y="530">Verger et potager</text></g>
+        </g>
+      </svg>
+      <p class="coupe-note">Coupe schématique, non à l’échelle.</p>
+      <div class="coupe-boutons" role="tablist" aria-label="Espaces de la maison">
+        <button role="tab" data-piece="pratique" aria-selected="true">Salle de pratique</button>
+        <button role="tab" data-piece="chambres" aria-selected="false">Chambres</button>
+        <button role="tab" data-piece="cuisine" aria-selected="false">Cuisine</button>
+        <button role="tab" data-piece="table" aria-selected="false">Salle à manger</button>
+        <button role="tab" data-piece="salon" aria-selected="false">Salon</button>
+        <button role="tab" data-piece="cour" aria-selected="false">Cour</button>
+        <button role="tab" data-piece="bien-etre" aria-selected="false">Espace bien-être</button>
+        <button role="tab" data-piece="verger" aria-selected="false">Verger et potager</button>
+      </div>
+      <div class="coupe-fiches">
+        <article class="cfiche is-active" data-fiche="pratique" role="tabpanel">
+          <img src="assets/img/salle/grande-salle-vide-charpente-1280.webp" srcset="assets/img/salle/grande-salle-vide-charpente-640.webp 640w, assets/img/salle/grande-salle-vide-charpente-1280.webp 1280w, assets/img/salle/grande-salle-vide-charpente-1920.webp 1920w, assets/img/salle/grande-salle-vide-charpente-2560.webp 2560w" sizes="(min-width: 900px) 34vw, 90vw" width="4032" height="3024" alt="La salle de pratique sous la charpente" loading="lazy" decoding="async">
+          <div><h3>Salle de pratique</h3>
+          <p>Sous les combles, au 2e étage. La charpente apparente la rend très contenante, et l’isolation en laine de bois lui garde une bonne température toute l’année. Elle sent bon le bois.</p>
+          <p class="cfiche-cote">Surface : 80 ou 100 m² selon les pages du site actuel, à confirmer.</p></div>
+        </article>
+        <article class="cfiche" data-fiche="chambres" role="tabpanel" hidden>
+          <img src="assets/img/chambres/chambre-bleue-lit-double-1280.webp" srcset="assets/img/chambres/chambre-bleue-lit-double-640.webp 640w, assets/img/chambres/chambre-bleue-lit-double-1280.webp 1280w, assets/img/chambres/chambre-bleue-lit-double-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 90vw" width="4032" height="3024" alt="Une chambre aux murs bleus, lit double et papier peint fleuri" loading="lazy" decoding="async">
+          <div><h3>Chambres</h3>
+          <p>De grandes chambres partagées, vastes et confortables, chacune avec sa salle de bain. Groupes de 8 à 15 personnes ; pour toute autre configuration, étudions votre projet ensemble.</p>
+          <p class="cfiche-cote">Détail des chambres et des couchages : à compléter.</p></div>
+        </article>
+        <article class="cfiche" data-fiche="cuisine" role="tabpanel" hidden>
+          <img src="assets/img/communs/cuisine-pivoines-poele-1280.webp" srcset="assets/img/communs/cuisine-pivoines-poele-640.webp 640w, assets/img/communs/cuisine-pivoines-poele-1280.webp 1280w, assets/img/communs/cuisine-pivoines-poele-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 90vw" width="2362" height="1772" alt="La cuisine, sa grande table et le poêle" loading="lazy" decoding="async">
+          <div><h3>Cuisine et pièce à vivre</h3>
+          <p>La grande cuisine où Joël et Emmanuelle préparent les repas. Le poêle à bois diffuse une douce chaleur dès le mois d’octobre ; les tisanes du jardin sont à disposition toute la journée.</p></div>
+        </article>
+        <article class="cfiche" data-fiche="table" role="tabpanel" hidden>
+          <img src="assets/img/communs/salle-a-manger-table-monastere-1280.webp" srcset="assets/img/communs/salle-a-manger-table-monastere-640.webp 640w, assets/img/communs/salle-a-manger-table-monastere-1280.webp 1280w, assets/img/communs/salle-a-manger-table-monastere-1920.webp 1920w, assets/img/communs/salle-a-manger-table-monastere-2560.webp 2560w" sizes="(min-width: 900px) 34vw, 90vw" width="4032" height="3024" alt="La salle à manger et sa longue table de monastère" loading="lazy" decoding="async">
+          <div><h3>Salle à manger et salle de travail</h3>
+          <p>Une salle de 30 m² au rez-de-chaussée, avec une superbe table de monastère en chêne de 4 m de long. On y prend les repas l’hiver, on peut aussi y travailler.</p></div>
+        </article>
+        <article class="cfiche" data-fiche="salon" role="tabpanel" hidden>
+          <img src="assets/img/communs/salon-piano-canape-1280.webp" srcset="assets/img/communs/salon-piano-canape-640.webp 640w, assets/img/communs/salon-piano-canape-1280.webp 1280w, assets/img/communs/salon-piano-canape-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 90vw" width="3322" height="1280" alt="Le salon, son piano droit et son canapé" loading="lazy" decoding="async">
+          <div><h3>Salon</h3>
+          <p>Cheminée, canapé, fauteuils et un grand piano droit Yamaha, avec une guitare sèche et un djembé : le salon reçoit régulièrement vos participants musiciens.</p></div>
+        </article>
+        <article class="cfiche" data-fiche="cour" role="tabpanel" hidden>
+          <img src="assets/img/jardin/cour-facade-volets-bleus-1280.webp" srcset="assets/img/jardin/cour-facade-volets-bleus-640.webp 640w, assets/img/jardin/cour-facade-volets-bleus-1280.webp 1177w" sizes="(min-width: 900px) 34vw, 90vw" width="1177" height="771" alt="La cour, sa façade aux volets bleus et l'olivier" loading="lazy" decoding="async">
+          <div><h3>Cour</h3>
+          <p>Aux beaux jours, les repas se prennent dans la grande cour ombragée, à l’ombre des bambous et de l’olivier, face aux rosiers anglais parfumés.</p></div>
+        </article>
+        <article class="cfiche" data-fiche="bien-etre" role="tabpanel" hidden>
+          <img src="assets/img/sauna/cabine-sauna-1280.webp" srcset="assets/img/sauna/cabine-sauna-640.webp 640w, assets/img/sauna/cabine-sauna-1280.webp 1280w, assets/img/sauna/cabine-sauna-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 90vw" width="4032" height="3024" alt="La cabine du sauna" loading="lazy" decoding="async">
+          <div><h3>Espace bien-être</h3>
+          <p>Un sauna sec avec vestiaire, salle de repos, salle de massage et salle de bain. Séance à 20 € par personne, à partir de deux personnes.</p></div>
+        </article>
+        <article class="cfiche" data-fiche="verger" role="tabpanel" hidden>
+          <img src="assets/img/jardin/verger-pratique-plein-air-1280.webp" srcset="assets/img/jardin/verger-pratique-plein-air-640.webp 640w, assets/img/jardin/verger-pratique-plein-air-1280.webp 1280w, assets/img/jardin/verger-pratique-plein-air-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 90vw" width="3264" height="2448" alt="Une personne en pratique au milieu du verger fleuri" loading="lazy" decoding="async">
+          <div><h3>Verger et potager</h3>
+          <p>Un jardin-verger de 1 000 m² ceint de murs de pierre sèche, un potager permaculturel et un espace ouvert pour la pratique en plein air.</p>
+          <p class="cfiche-cote">Espace de pratique extérieur : 100 ou 200 m² selon les pages du site actuel, à confirmer.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Le matériel -->
+  <section class="materiel" id="materiel" data-theme="sombre" aria-labelledby="titre-materiel">
+    <figure class="materiel-photo"><img src="assets/img/salle/grande-salle-zafus-tapis-1280.webp" srcset="assets/img/salle/grande-salle-zafus-tapis-640.webp 640w, assets/img/salle/grande-salle-zafus-tapis-1280.webp 1280w, assets/img/salle/grande-salle-zafus-tapis-1920.webp 1920w, assets/img/salle/grande-salle-zafus-tapis-2560.webp 2560w" sizes="(min-width: 900px) 45vw, 90vw" width="4000" height="3000" alt="Tapis, zafus et coussins dans la salle de pratique" loading="lazy" decoding="async"></figure>
+    <div class="materiel-texte">
+      <h2 class="titre titre-clair" id="titre-materiel" data-split>Tout est sur place</h2>
+      <ul class="icones" data-icones>
+        <li><svg viewBox="0 0 48 48"><rect x="6" y="18" width="30" height="12" rx="6"/><circle cx="36" cy="24" r="6"/><path d="M36 21 a3 3 0 1 1 0 6"/></svg>Tapis</li>
+        <li><svg viewBox="0 0 48 48"><ellipse cx="24" cy="30" rx="17" ry="7"/><path d="M7 30 V24 C 7 20 41 20 41 24 V30"/><ellipse cx="24" cy="24" rx="17" ry="5"/></svg>Zafus</li>
+        <li><svg viewBox="0 0 48 48"><path d="M8 20 L20 14 L40 20 L28 26 Z"/><path d="M8 20 V30 L28 36 V26 M28 36 L40 30 V20"/></svg>Briques</li>
+        <li><svg viewBox="0 0 48 48"><path d="M6 30 C 14 20 22 34 30 24 S 40 16 42 20"/><rect x="38" y="16" width="6" height="8" rx="1"/></svg>Sangles</li>
+        <li><svg viewBox="0 0 48 48"><path d="M8 16 H40 V26 H8 Z M8 26 C 8 32 12 34 16 34 H40 V26"/><path d="M14 16 V26 M20 16 V26"/></svg>Couvertures</li>
+        <li><svg viewBox="0 0 48 48"><rect x="14" y="6" width="20" height="36" rx="3"/><circle cx="24" cy="30" r="6"/><circle cx="24" cy="15" r="3"/></svg>Sono</li>
+        <li><svg viewBox="0 0 48 48"><rect x="6" y="18" width="30" height="14" rx="3"/><circle cx="17" cy="25" r="4"/><path d="M36 22 L44 18 V32 L36 28"/></svg>Vidéoprojecteur</li>
+        <li><svg viewBox="0 0 48 48"><rect x="6" y="12" width="36" height="24" rx="2"/><path d="M6 26 H42 M12 26 V36 M18 26 V36 M24 26 V36 M30 26 V36 M36 26 V36"/><path d="M15 26 V31 M21 26 V31 M33 26 V31"/></svg>Piano droit</li>
+        <li><svg viewBox="0 0 48 48"><path d="M28 20 C 36 18 38 28 32 32 C 30 40 18 42 14 36 C 8 32 12 22 20 24 C 22 22 24 20 28 20 Z"/><circle cx="23" cy="31" r="3"/><path d="M28 21 L40 8 M38 6 L42 10"/></svg>Guitare</li>
+        <li><svg viewBox="0 0 48 48"><ellipse cx="24" cy="12" rx="14" ry="4"/><path d="M10 12 C 10 22 18 24 18 30 L16 42 H32 L30 30 C 30 24 38 22 38 12"/><path d="M14 18 L22 28 M34 18 L26 28"/></svg>Djembé</li>
+      </ul>
+      <p class="materiel-note">Matériel de yoga et de méditation : tapis, zafus, briques, sangles et couvertures. Très bonne sono et matériel de projection.</p>
+    </div>
+  </section>
+
+  <!-- 5. Deux formules -->
+  <section class="formules" id="formules" aria-labelledby="titre-formules">
+    <header class="tete">
+      <h2 class="titre" id="titre-formules" data-split>Deux façons de séjourner</h2>
+    </header>
+    <div class="formules-grille">
+      <article class="formule incline">
+        <figure><img src="assets/img/communs/salle-a-manger-table-monastere-1280.webp" srcset="assets/img/communs/salle-a-manger-table-monastere-640.webp 640w, assets/img/communs/salle-a-manger-table-monastere-1280.webp 1280w, assets/img/communs/salle-a-manger-table-monastere-1920.webp 1920w, assets/img/communs/salle-a-manger-table-monastere-2560.webp 2560w" sizes="(min-width: 900px) 40vw, 90vw" width="4032" height="3024" alt="La table de monastère dressée dans la salle à manger" loading="lazy" decoding="async"></figure>
+        <div class="formule-texte">
+          <h3>Pension complète</h3>
+          <p>Vous venez vous faire chouchouter et vous concentrer sur vos activités : Joël et Emmanuelle sont aux manettes de la cuisine. Bons petits plats végétariens, cuisine bio et locale, demandes spécifiques entendues (allergies, intolérances).</p>
+          <p class="formule-prix">Tarif : à compléter</p>
+        </div>
+      </article>
+      <article class="formule incline">
+        <figure><img src="assets/img/communs/cuisine-groupe-participants-1280.webp" srcset="assets/img/communs/cuisine-groupe-participants-640.webp 640w, assets/img/communs/cuisine-groupe-participants-1280.webp 1280w, assets/img/communs/cuisine-groupe-participants-1920.webp 1920w" sizes="(min-width: 900px) 40vw, 90vw" width="2048" height="2048" alt="Des participants préparent le repas ensemble dans la cuisine" loading="lazy" decoding="async"></figure>
+        <div class="formule-texte">
+          <h3>Gestion libre</h3>
+          <p>Vous louez la maison entière sans la prestation gourmande et gérez vous-mêmes la préparation des repas, dans la grande cuisine équipée.</p>
+          <p class="formule-prix">Tarif : à compléter</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 6. On s'occupe de vous -->
+  <section class="parcours" id="parcours" aria-labelledby="titre-parcours">
+    <header class="tete">
+      <h2 class="titre" id="titre-parcours" data-split>Nous vous accompagnons</h2>
+      <p class="chapeau">De la réservation au dernier jour de votre stage.</p>
+    </header>
+    <svg class="parcours-fil" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true"><path d="M50 0 C 90 120 10 240 50 360 C 90 480 10 600 50 720 C 90 840 10 920 50 1000"/></svg>
+    <ol class="etapes">
+      <li class="etape">
+        <figure><img src="assets/img/hotes/emmanuelle-joel-en-cuisine-1280.webp" srcset="assets/img/hotes/emmanuelle-joel-en-cuisine-640.webp 640w, assets/img/hotes/emmanuelle-joel-en-cuisine-1280.webp 873w" sizes="(min-width: 900px) 30vw, 85vw" width="873" height="705" alt="Emmanuelle et Joël en cuisine" loading="lazy" decoding="async"></figure>
+        <div><h3>Dès la réservation</h3><p>Nous vous accompagnons dès votre réservation et travaillons en co-construction avec vous.</p></div>
+      </li>
+      <li class="etape">
+        <figure><img src="assets/img/pratique/groupe-tai-chi-plein-air-1280.webp" srcset="assets/img/pratique/groupe-tai-chi-plein-air-640.webp 640w, assets/img/pratique/groupe-tai-chi-plein-air-1280.webp 1280w, assets/img/pratique/groupe-tai-chi-plein-air-1920.webp 1920w" sizes="(min-width: 900px) 30vw, 85vw" width="5254" height="2992" alt="Un groupe pratique le tai-chi en plein air sous les arbres" loading="lazy" decoding="async"></figure>
+        <div><h3>La communication de votre stage</h3><p>Nous vous faisons bénéficier de nos circuits de diffusion pour faire connaître votre stage.</p></div>
+      </li>
+      <li class="etape">
+        <figure><img src="assets/img/sauna/salle-de-massage-1280.webp" srcset="assets/img/sauna/salle-de-massage-640.webp 640w, assets/img/sauna/salle-de-massage-1280.webp 1280w, assets/img/sauna/salle-de-massage-1920.webp 1920w" sizes="(min-width: 900px) 30vw, 85vw" width="3024" height="4032" alt="La salle de massage de l'espace bien-être" loading="lazy" decoding="async"></figure>
+        <div><h3>Des activités complémentaires</h3><p>Des professionnels partenaires peuvent intervenir pour un cours de yoga, des massages, ou un petit atelier menuiserie avec Joël.</p></div>
+      </li>
+      <li class="etape">
+        <figure><img src="assets/img/village/anglin-automne-ilot-1280.webp" srcset="assets/img/village/anglin-automne-ilot-640.webp 640w, assets/img/village/anglin-automne-ilot-1280.webp 1280w, assets/img/village/anglin-automne-ilot-1920.webp 1600w" sizes="(min-width: 900px) 30vw, 85vw" width="1600" height="900" alt="L'Anglin en automne, un îlot au milieu de la rivière" loading="lazy" decoding="async"></figure>
+        <div><h3>Un stage sur mesure</h3><p>Horaires, spécificités alimentaires, activités parallèles : nous nous adaptons. Et nous connaissons toutes les balades du coin.</p></div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 7. Les chambres -->
+  <section class="chambres" id="chambres" data-theme="sombre" aria-labelledby="titre-chambres">
+    <div class="chambres-piste" data-hscroll>
+      <header class="chambres-tete">
+        <h2 class="titre titre-clair" id="titre-chambres" data-split>Les chambres</h2>
+        <p>Entre 8 et 15 personnes, accueillies dans des chambres vastes et confortables, chacune avec sa salle de bain. Noms et couchages de chaque chambre : à compléter.</p>
+      </header>
+      <figure class="chambre incline"><img src="assets/img/chambres/chambre-bleue-lit-double-1280.webp" srcset="assets/img/chambres/chambre-bleue-lit-double-640.webp 640w, assets/img/chambres/chambre-bleue-lit-double-1280.webp 1280w, assets/img/chambres/chambre-bleue-lit-double-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 80vw" width="4032" height="3024" alt="Chambre aux murs bleus et papier peint fleuri, lit double" loading="lazy" decoding="async"><figcaption>Murs bleus, lit double</figcaption></figure>
+      <figure class="chambre incline"><img src="assets/img/chambres/chambre-verte-trois-lits-1280.webp" srcset="assets/img/chambres/chambre-verte-trois-lits-640.webp 640w, assets/img/chambres/chambre-verte-trois-lits-1280.webp 1280w, assets/img/chambres/chambre-verte-trois-lits-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 80vw" width="4032" height="3024" alt="Chambre au papier peint vert, trois lits simples" loading="lazy" decoding="async"><figcaption>Papier peint vert, trois lits</figcaption></figure>
+      <figure class="chambre incline"><img src="assets/img/chambres/chambre-jaune-trois-lits-1280.webp" srcset="assets/img/chambres/chambre-jaune-trois-lits-640.webp 640w, assets/img/chambres/chambre-jaune-trois-lits-1280.webp 1280w, assets/img/chambres/chambre-jaune-trois-lits-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 80vw" width="4032" height="3024" alt="Chambre au papier peint doré et tapis rouge, trois lits" loading="lazy" decoding="async"><figcaption>Tapis rouge, trois lits</figcaption></figure>
+      <figure class="chambre incline"><img src="assets/img/chambres/chambre-fleurie-lits-bleus-1280.webp" srcset="assets/img/chambres/chambre-fleurie-lits-bleus-640.webp 640w, assets/img/chambres/chambre-fleurie-lits-bleus-1280.webp 1084w" sizes="(min-width: 900px) 34vw, 80vw" width="1084" height="724" alt="Chambre fleurie, trois lits aux couvre-lits bleus" loading="lazy" decoding="async"><figcaption>Papier peint fleuri, trois lits</figcaption></figure>
+      <figure class="chambre incline"><img src="assets/img/chambres/chambre-sous-combles-1280.webp" srcset="assets/img/chambres/chambre-sous-combles-640.webp 640w, assets/img/chambres/chambre-sous-combles-1280.webp 1280w, assets/img/chambres/chambre-sous-combles-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 80vw" width="4032" height="3024" alt="Chambre mansardée sous la charpente" loading="lazy" decoding="async"><figcaption>Sous la charpente</figcaption></figure>
+      <figure class="chambre incline"><img src="assets/img/chambres/chambre-orange-cheminee-1280.webp" srcset="assets/img/chambres/chambre-orange-cheminee-640.webp 640w, assets/img/chambres/chambre-orange-cheminee-1280.webp 1280w, assets/img/chambres/chambre-orange-cheminee-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 80vw" width="3322" height="1280" alt="Chambre aux murs orangés avec cheminée" loading="lazy" decoding="async"><figcaption>Murs orangés, cheminée</figcaption></figure>
+      <figure class="chambre incline"><img src="assets/img/chambres/salle-de-bain-verte-1280.webp" srcset="assets/img/chambres/salle-de-bain-verte-640.webp 640w, assets/img/chambres/salle-de-bain-verte-1280.webp 1280w, assets/img/chambres/salle-de-bain-verte-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 80vw" width="5976" height="3992" alt="Salle de bain aux murs vert sombre, vasque en céramique" loading="lazy" decoding="async"><figcaption>Une salle de bain par chambre</figcaption></figure>
+      <figure class="chambre incline"><img src="assets/img/chambres/salle-de-bain-rouge-1280.webp" srcset="assets/img/chambres/salle-de-bain-rouge-640.webp 640w, assets/img/chambres/salle-de-bain-rouge-1280.webp 1280w, assets/img/chambres/salle-de-bain-rouge-1920.webp 1920w" sizes="(min-width: 900px) 34vw, 80vw" width="5976" height="3992" alt="Salle de bain aux murs rouges, miroir ovale" loading="lazy" decoding="async"><figcaption>Salle de bain</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 8. Témoignages d'enseignants -->
+  <section class="temoins" id="temoins" aria-labelledby="titre-temoins">
+    <h2 class="titre" id="titre-temoins" data-split>Ils y ont animé leurs stages</h2>
+    <div class="temoins-flux" data-flux>
+      <figure class="temoin"><blockquote><p>Quelle chance, quelle joie d’avoir trouvé la perle que vous êtes et la merveille de lieu que vous avez créé.</p></blockquote><figcaption>Diane Taieb, formatrice certifiée en ennéagramme et méditation pleine conscience</figcaption></figure>
+      <figure class="temoin"><blockquote><p>Un séjour divin chez Emmanuelle et Joël qui sont d’une ouverture de cœur et de divins cuisiniers.</p></blockquote><figcaption>Sreemati, professeure de yoga</figcaption></figure>
+      <figure class="temoin"><blockquote><p>Je n’avais aucun doute sur ce que vous alliez nous offrir mais je n’aurais pu imaginer que ce serait autant d’amour, de joie, de bienveillance et de rires !</p></blockquote><figcaption>Laetitia Lescuyer, professeure de yoga</figcaption></figure>
+      <figure class="temoin"><blockquote><p>Joël et Emmanuelle sont définitivement des hôtes d’exception. Seul hic : il faut prévoir une deuxième visite pour éviter de se sentir trop triste au départ.</p></blockquote><figcaption>Antoine Pommet, professeur de yoga</figcaption></figure>
+      <figure class="temoin"><blockquote><p>Je n’ai jamais eu une aussi belle énergie, joyeuse, vivante, lumineuse et généreuse dans mes retraites précédentes !</p></blockquote><figcaption>Alice Molardi, professeure de yoga</figcaption></figure>
+      <figure class="temoin"><blockquote><p>Un séjour dont nous nous souviendrons avec bonheur.</p></blockquote><figcaption>Patrick Ongaro, professeur de taï-chi</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 9. Demande de disponibilité -->
+  <section class="demande" id="demande" aria-labelledby="titre-demande">
+    <div class="demande-fond" aria-hidden="true"><img src="assets/img/jardin/hamac-sous-le-cerisier-1280.webp" srcset="assets/img/jardin/hamac-sous-le-cerisier-640.webp 640w, assets/img/jardin/hamac-sous-le-cerisier-1280.webp 1280w, assets/img/jardin/hamac-sous-le-cerisier-1920.webp 1920w" sizes="100vw" width="2362" height="1578" alt="" loading="lazy" decoding="async"></div>
+    <div class="demande-carte">
+      <h2 class="titre" id="titre-demande">Demander une disponibilité</h2>
+      <p class="demande-intro">Cinq questions, deux minutes. Joël et Emmanuelle vous rappellent pour construire le stage avec vous.</p>
+      <div class="riviere-progres" aria-hidden="true"><svg viewBox="0 0 600 40" preserveAspectRatio="none"><path class="rp-lit" d="M0 20 C 60 4 120 36 180 20 S 300 4 360 20 S 480 36 540 20 S 600 10 600 20"/><path class="rp-eau" d="M0 20 C 60 4 120 36 180 20 S 300 4 360 20 S 480 36 540 20 S 600 10 600 20"/></svg></div>
+      <p class="demande-etape-num" aria-live="polite">Étape 1 sur 5</p>
+      <form class="formulaire" data-formulaire novalidate>
+        <fieldset class="pas is-active" data-pas="1">
+          <legend>Votre stage</legend>
+          <div class="choix-grille">
+            <label class="choix"><input type="radio" name="pratique" value="Yoga" required><span>Yoga</span></label>
+            <label class="choix"><input type="radio" name="pratique" value="Tai-chi, qi gong"><span>Tai-chi, qi gong</span></label>
+            <label class="choix"><input type="radio" name="pratique" value="Méditation, MBSR"><span>Méditation, MBSR</span></label>
+            <label class="choix"><input type="radio" name="pratique" value="Développement personnel"><span>Développement personnel</span></label>
+            <label class="choix"><input type="radio" name="pratique" value="Formation"><span>Formation</span></label>
+            <label class="choix"><input type="radio" name="pratique" value="Autre"><span>Autre</span></label>
+          </div>
+          <label class="champ"><span>Intitulé du stage (facultatif)</span><input type="text" name="intitule" autocomplete="off"></label>
+        </fieldset>
+        <fieldset class="pas" data-pas="2" hidden>
+          <legend>Vos dates</legend>
+          <p class="aide">Choisissez le jour d’arrivée puis le jour de départ. Les disponibilités réelles vous seront confirmées par téléphone.</p>
+          <div class="calendrier" data-calendrier>
+            <div class="cal-tete"><button type="button" class="cal-nav" data-cal="-1" aria-label="Mois précédent">‹</button><p class="cal-mois" aria-live="polite"></p><button type="button" class="cal-nav" data-cal="1" aria-label="Mois suivant">›</button></div>
+            <div class="cal-jours" role="grid"></div>
+          </div>
+          <p class="cal-resume" aria-live="polite">Aucune date choisie.</p>
+          <input type="hidden" name="arrivee"><input type="hidden" name="depart">
+        </fieldset>
+        <fieldset class="pas" data-pas="3" hidden>
+          <legend>Votre groupe</legend>
+          <label class="champ champ-curseur"><span>Nombre de personnes, vous compris : <output data-effectif-sortie>12</output></span>
+            <input type="range" name="effectif" min="2" max="25" value="12" data-effectif></label>
+          <p class="aide" data-effectif-aide>La maison accueille des groupes de 8 à 15 personnes.</p>
+        </fieldset>
+        <fieldset class="pas" data-pas="4" hidden>
+          <legend>Formule et options</legend>
+          <div class="choix-grille choix-2">
+            <label class="choix"><input type="radio" name="formule" value="Pension complète végétarienne" required><span>Pension complète végétarienne</span></label>
+            <label class="choix"><input type="radio" name="formule" value="Gestion libre"><span>Gestion libre</span></label>
+          </div>
+          <p class="aide">Options souhaitées</p>
+          <div class="choix-grille">
+            <label class="choix choix-case"><input type="checkbox" name="options" value="Sauna"><span>Sauna</span></label>
+            <label class="choix choix-case"><input type="checkbox" name="options" value="Massages"><span>Massages</span></label>
+            <label class="choix choix-case"><input type="checkbox" name="options" value="Atelier menuiserie avec Joël"><span>Atelier menuiserie</span></label>
+            <label class="choix choix-case"><input type="checkbox" name="options" value="Cours de yoga"><span>Cours de yoga</span></label>
+          </div>
+          <label class="champ"><span>Régimes, allergies, besoins particuliers (facultatif)</span><textarea name="besoins" rows="3"></textarea></label>
+        </fieldset>
+        <fieldset class="pas" data-pas="5" hidden>
+          <legend>Vos coordonnées</legend>
+          <label class="champ"><span>Prénom et nom</span><input type="text" name="nom" autocomplete="name" required></label>
+          <label class="champ"><span>E-mail</span><input type="email" name="email" autocomplete="email" required></label>
+          <label class="champ"><span>Téléphone</span><input type="tel" name="tel" autocomplete="tel"></label>
+          <div class="recap" data-recap></div>
+        </fieldset>
+        <p class="form-erreur" role="alert"></p>
+        <div class="form-nav">
+          <button type="button" class="btn btn-contour" data-prec hidden><span>Retour</span></button>
+          <button type="button" class="btn btn-plein magnetique" data-suiv><span>Continuer</span></button>
+          <button type="submit" class="btn btn-plein magnetique" data-envoyer hidden><span>Envoyer la demande</span></button>
+        </div>
+        <p class="form-note">Maquette : rien n’est envoyé ni enregistré.</p>
+      </form>
+      <div class="merci" hidden tabindex="-1">
+        <h3>Demande prête</h3>
+        <p>Dans le site réel, Joël et Emmanuelle recevraient votre demande et vous rappelleraient. Pour cette maquette, rien n’a été envoyé.</p>
+        <p>En attendant : <a class="lien" href="tel:+33785831652">07 85 83 16 52</a> ou <a class="lien" href="tel:+33680074788">06 80 07 47 88</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Accès -->
+  <section class="acces" id="acces" data-theme="sombre" aria-labelledby="titre-acces">
+    <div class="acces-grille">
+      <div>
+        <h2 class="titre titre-clair" id="titre-acces" data-split>Venir à l’Atelier</h2>
+        <p class="chapeau">5 route de Vicq, 86260 Angles-sur-l’Anglin. Gare de Châtellerault à 30 minutes, à 1 h 30 de Paris-Montparnasse. Gare TGV de Poitiers également.</p>
+        <p class="acces-tel"><a class="lien lien-clair" href="tel:+33785831652">Joël : 07 85 83 16 52</a><br><a class="lien lien-clair" href="tel:+33680074788">Emmanuelle : 06 80 07 47 88</a><br><a class="lien lien-clair" href="mailto:contact@ateliersources.com">contact@ateliersources.com</a></p>
+      </div>
+      <figure class="acces-photo"><img src="assets/img/village/vallee-vue-village-1280.webp" srcset="assets/img/village/vallee-vue-village-640.webp 640w, assets/img/village/vallee-vue-village-1280.webp 1280w, assets/img/village/vallee-vue-village-1920.webp 1920w" sizes="(min-width: 900px) 45vw, 90vw" width="2986" height="1592" alt="La vallée vue depuis le village d'Angles" loading="lazy" decoding="async"></figure>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied" data-theme="sombre">
+  <div class="pied-appel">
+    <p class="pied-question">Vous avez un projet de stage ou de retraite ? Construisons-le ensemble.</p>
+    <a class="btn-geant magnetique" href="organiser-un-stage.html#demande" data-curseur="Écrire">
+      <span class="btn-geant-texte">Organiser un stage</span>
+      <span class="btn-geant-onde" aria-hidden="true"></span>
+    </a>
+  </div>
+  <figure class="pied-bande">
+    <img src="assets/img/jardin/verger-muret-panoramique-1280.webp" srcset="assets/img/jardin/verger-muret-panoramique-640.webp 640w, assets/img/jardin/verger-muret-panoramique-1280.webp 1280w, assets/img/jardin/verger-muret-panoramique-1920.webp 1920w, assets/img/jardin/verger-muret-panoramique-2560.webp 2560w" sizes="100vw" width="5976" height="1256" alt="Le verger et son muret de pierre sèche" loading="lazy" decoding="async" data-parallaxe="0.15">
+  </figure>
+  <div class="pied-grille">
+    <div class="pied-col">
+      <img class="pied-logo" src="assets/img/logo/logo-clair.png" alt="L'Atelier des Sources" width="678" height="331" loading="lazy">
+      <p>5 route de Vicq<br>86260 Angles-sur-l’Anglin<br>Vienne, Nouvelle-Aquitaine</p>
+    </div>
+    <div class="pied-col">
+      <h2 class="pied-titre">Nous joindre</h2>
+      <p>Joël Elbaz<br><a class="lien" href="tel:+33785831652">07 85 83 16 52</a></p>
+      <p>Emmanuelle Geslin<br><a class="lien" href="tel:+33680074788">06 80 07 47 88</a></p>
+      <p><a class="lien" href="mailto:contact@ateliersources.com">contact@ateliersources.com</a></p>
+    </div>
+    <div class="pied-col">
+      <h2 class="pied-titre">Lettre d’information</h2>
+      <form class="pied-lettre" data-simule novalidate>
+        <label for="lettre-email">Votre adresse e-mail</label>
+        <div class="pied-lettre-champ">
+          <input id="lettre-email" type="email" name="email" autocomplete="email" required placeholder="prenom@exemple.fr">
+          <button class="btn btn-clair" type="submit">S’abonner</button>
+        </div>
+        <p class="pied-lettre-retour" role="status" aria-live="polite"></p>
+      </form>
+      <p class="pied-reseaux">
+        <a class="lien" href="https://www.instagram.com/ateliersources/" rel="noopener" target="_blank">Instagram</a>
+        <a class="lien" href="https://www.facebook.com/ateliersources/" rel="noopener" target="_blank">Facebook</a>
+        <a class="lien" href="https://www.linkedin.com/company/l-atelier-des-sources" rel="noopener" target="_blank">LinkedIn</a>
+        <a class="lien" href="https://urls.fr/Xq8r8P" rel="noopener" target="_blank">Avis Google</a>
+      </p>
+    </div>
+  </div>
+  <div class="pied-bas">
+    <p>Maquette de démonstration. Formulaires simulés : aucun message n’est envoyé.</p>
+    <p><a class="lien" href="#mentions" data-a-completer>Mentions légales (à compléter)</a> <a class="lien" href="#confidentialite" data-a-completer>Données personnelles (à compléter)</a></p>
+    <p>Crédit photo : Nathalie Frennet, Retraite Lunatiq, et L’Atelier des Sources. Images marquées « illustration » : générées, à remplacer.</p>
+  </div>
+</footer>
+
+
+<script src="assets/js/vendor/gsap.min.js" defer></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/vendor/SplitText.min.js" defer></script>
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
