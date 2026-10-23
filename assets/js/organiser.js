@@ -169,7 +169,7 @@ function formulaire() {
     const v = Number(eff.value);
     sortie.textContent = String(v);
     const hors = v < 8 || v > 15;
-    aide.textContent = hors ? 'En dessous de 8 ou au-delà de 15 personnes, étudions votre projet ensemble : précisez-le à l’étape suivante.' : 'La maison accueille des groupes de 8 à 15 personnes.';
+    aide.textContent = hors ? 'En dessous de 8 ou au-delà de 15 personnes, étudions votre projet ensemble\u00a0: précisez-le à l’étape suivante.' : 'La maison accueille des groupes de 8 à 15 personnes.';
     aide.classList.toggle('is-alerte', hors);
   };
   eff.addEventListener('input', majEff); majEff();
@@ -224,7 +224,7 @@ function formulaire() {
     qs('[name="depart"]', form).value = choix.depart ? iso(choix.depart) : '';
     if (choix.arrivee && choix.depart) {
       const nuits = Math.round((choix.depart - choix.arrivee) / 86400000);
-      resume.textContent = `Du ${lisible(choix.arrivee)} au ${lisible(choix.depart)} : ${nuits} nuit${nuits > 1 ? 's' : ''}.`;
+      resume.textContent = `Du ${lisible(choix.arrivee)} au ${lisible(choix.depart)}\u00a0: ${nuits} nuit${nuits > 1 ? 's' : ''}.`;
     } else resume.textContent = `Arrivée le ${lisible(choix.arrivee)}. Choisissez maintenant le jour de départ.`;
     const focusJour = b.dataset.jour;
     dessiner();
@@ -236,7 +236,7 @@ function formulaire() {
   function recap() {
     const fd = new FormData(form);
     const lignes = [
-      ['Stage', [fd.get('pratique'), fd.get('intitule')].filter(Boolean).join(' : ')],
+      ['Stage', [fd.get('pratique'), fd.get('intitule')].filter(Boolean).join('\u00a0: ')],
       ['Dates', choix.arrivee && choix.depart ? `${choix.arrivee.toLocaleDateString('fr-FR')} au ${choix.depart.toLocaleDateString('fr-FR')}` : ''],
       ['Groupe', `${fd.get('effectif')} personnes`],
       ['Formule', fd.get('formule') || ''],

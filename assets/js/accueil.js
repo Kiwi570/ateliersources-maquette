@@ -154,7 +154,7 @@ function programme() {
   const fmt = (a, b) => {
     const da = d(a), db = d(b);
     const m = (x) => x.toLocaleDateString('fr-FR', { month: 'short' });
-    return da.getMonth() === db.getMonth() ? `${da.getDate()}-${db.getDate()} ${m(db)} ${db.getFullYear()}` : `${da.getDate()} ${m(da)} - ${db.getDate()} ${m(db)} ${db.getFullYear()}`;
+    return da.getMonth() === db.getMonth() ? `${da.getDate()}–${db.getDate()} ${m(db)} ${db.getFullYear()}` : `${da.getDate()} ${m(da)} – ${db.getDate()} ${m(db)} ${db.getFullYear()}`;
   };
   const avenir = stages.filter((s) => d(s.fin) >= auj).sort((a, b) => d(a.debut) - d(b.debut));
   const passes = stages.filter((s) => d(s.fin) < auj).sort((a, b) => d(b.debut) - d(a.debut));

@@ -1,11 +1,14 @@
 // Animations communes : titres, révélations, compteurs, parallaxe, défilements horizontaux épinglés.
 import { qs, qsa, estCalme } from './outils.js';
 
+// aria-label n'est permis que sur les titres : ailleurs, la découpe reste lisible telle quelle
+const ariaSplit = (el) => (/^H[1-6]$/.test(el.tagName) ? 'auto' : 'none');
+
 export function decouperTitres() {
   qsa('[data-split]').forEach((el) => {
     if (el.closest('.ouverture')) return; // géré par l'ouverture
     SplitText.create(el, {
-      type: 'lines', mask: 'lines', linesClass: 'split-ligne-int', autoSplit: true,
+      type: 'lines', mask: 'lines', linesClass: 'split-ligne-int', autoSplit: true, aria: ariaSplit(el),
       onSplit(self) {
         return gsap.from(self.lines, {
           yPercent: 110, rotate: 2, duration: 1.2, stagger: 0.09, ease: 'expo.out',
@@ -18,7 +21,7 @@ export function decouperTitres() {
 
 function surface() {
   qsa('[data-surface]').forEach((el) => {
-    const s = SplitText.create(el, { type: 'words', wordsClass: 'mot' });
+    const s = SplitText.create(el, { type: 'words', wordsClass: 'mot', aria: ariaSplit(el) });
     gsap.from(s.words, {
       yPercent: 70, opacity: 0, filter: 'blur(8px)', duration: 1.4, ease: 'power3.out',
       stagger: { each: 0.035, from: 'start' },
@@ -132,13 +135,29 @@ function bandes() {
   });
 }
 
+// pistes en défilement natif (mobile, mode calme) : atteignables au clavier quand elles débordent
+function pistesClavier() {
+  qsa('[data-hscroll]').forEach((p) => {
+    const maj = () => {
+      const natif = !p.closest('.is-epingle') && p.scrollWidth > p.clientWidth + 1;
+      if (natif && !p.hasAttribute('tabindex')) {
+        const h = p.closest('section') && p.closest('section').querySelector('h2');
+        p.tabIndex = 0; p.setAttribute('role', 'region'); p.setAttribute('aria-label', h ? h.textContent.replace(/\s+/g, ' ').trim() : 'Galerie');
+      } else if (!natif && p.hasAttribute('tabindex')) { ['tabindex', 'role', 'aria-label'].forEach((a) => p.removeAttribute(a)); }
+    };
+    maj(); let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(maj, 200); }, { passive: true });
+  });
+}
+
 export function initAnimations() {
   journee();
   if (estCalme()) return;
   decouperTitres(); surface(); compteurs(); mosaique(); revelations(); parallaxes(); epingles(); bandes();
+  pistesClavier();
 }
 
 export function initAnimationsCalmes() {
+  pistesClavier();
   // en mode calme : les compteurs affichent leur valeur, les galeries restent en défilement natif
   qsa('[data-compte]').forEach((el) => { if (el.hasAttribute('data-milliers')) el.textContent = '1 000'; });
   qsa('.journee, .chambres').forEach((sec) => {

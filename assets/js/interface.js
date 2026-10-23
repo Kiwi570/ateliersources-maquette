@@ -47,7 +47,16 @@ function menu() {
     } else fermer();
   });
   m.addEventListener('click', (e) => { if (e.target.closest('a')) fermer(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') { fermer(); btn.focus(); } });
+  document.addEventListener('keydown', (e) => {
+    if (btn.getAttribute('aria-expanded') !== 'true') return;
+    if (e.key === 'Escape') { fermer(); btn.focus(); return; }
+    if (e.key !== 'Tab') return;
+    // piège du focus : bouton du menu + éléments du menu
+    const f = [btn, ...qsa('a[href], button', m).filter((x) => x.offsetParent !== null)];
+    const i = f.indexOf(document.activeElement);
+    if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && (i === f.length - 1 || i === -1)) { e.preventDefault(); f[0].focus(); }
+  });
 }
 
 function calme() {
@@ -57,7 +66,7 @@ function calme() {
       const vers = !estCalme();
       ecrireStockage('ads-calme', vers ? '1' : '0');
       b.setAttribute('aria-pressed', String(vers));
-      sessionStorage && (() => { try { sessionStorage.setItem('ads-retour-y', String(window.scrollY)); } catch (e) {} })();
+      try { sessionStorage.setItem('ads-retour-y', String(window.scrollY)); } catch (e) { /* stockage indisponible */ }
       await rideauFermer();
       location.reload();
     });
@@ -154,7 +163,7 @@ function lettre() {
       e.preventDefault();
       const champ = qs('input[type="email"]', f), retour = qs('.pied-lettre-retour', f);
       if (!champ.value || !champ.checkValidity()) { retour.textContent = 'Indiquez une adresse e-mail valide, par exemple prenom@exemple.fr.'; champ.focus(); return; }
-      retour.textContent = 'Inscription simulée : dans le site réel, vous recevriez la lettre d’information.';
+      retour.textContent = 'Inscription simulée\u00a0: dans le site réel, vous recevriez la lettre d’information.';
       goutte(0.8);
       f.reset();
     });

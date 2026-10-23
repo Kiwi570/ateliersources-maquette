@@ -10,6 +10,8 @@ export function initRiviere() {
   let table = [], L = 1, pos = { x: 0, y: 0, a: 0 }, cible = { x: 0, y: 0, a: 0 };
 
   function construire() {
+    // le SVG ne doit pas compter dans la hauteur mesurée (sinon la page ne raccourcit jamais)
+    svg.style.height = '0px'; svg.setAttribute('height', 0);
     const W = document.documentElement.clientWidth;
     const H = document.documentElement.scrollHeight;
     svg.setAttribute('width', W); svg.setAttribute('height', H);

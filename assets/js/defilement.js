@@ -15,6 +15,7 @@ function boucle() {
 
 function surMolette(e) {
   if (e.ctrlKey || e.defaultPrevented) return;
+  if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; // balayage horizontal (pavé tactile, historique)
   if (e.target.closest && e.target.closest('[data-hscroll]:not(.is-epingle [data-hscroll]), .menu, textarea, select')) return;
   if (document.documentElement.classList.contains('menu-ouvert')) return;
   e.preventDefault();
