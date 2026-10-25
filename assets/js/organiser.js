@@ -76,6 +76,37 @@ function parcours() {
   gsap.to(p, { strokeDashoffset: 0, ease: 'none', scrollTrigger: { trigger: '.etapes', start: 'top 70%', end: 'bottom 60%', scrub: 1 } });
 }
 
+// Espace bien-être : la pièce change de température à mesure que l'on avance dans le déroulé.
+function bienEtre() {
+  const sec = qs('[data-bienetre]');
+  if (!sec) return;
+  const etapes = qsa('.be-etape', sec), marques = qsa('.be-jauge li', sec);
+  const activer = (i) => {
+    sec.dataset.etape = String(i);
+    etapes.forEach((e, j) => e.classList.toggle('is-active', j === i));
+    marques.forEach((m, j) => { m.classList.toggle('is-active', j === i); m.classList.toggle('is-passe', j < i); });
+  };
+  etapes.forEach((e, i) => ScrollTrigger.create({
+    trigger: e, start: 'top 60%', end: 'bottom 60%',
+    onToggle: (s) => { if (s.isActive) activer(i); },
+  }));
+  activer(0);
+  if (estCalme()) return;
+  const plein = qs('.be-jauge-plein', sec);
+  if (plein) gsap.fromTo(plein, { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', ease: 'none', scrollTrigger: { trigger: qs('.be-etapes', sec), start: 'top 60%', end: 'bottom 60%', scrub: 0.6 } });
+  // chaque photo apparaît comme une vapeur qui se lève
+  etapes.forEach((e) => {
+    const f = qs('figure', e), img = qs('img', f), txt = qs('.be-texte', e);
+    const tl = gsap.timeline({ scrollTrigger: { trigger: f, start: 'top 82%', once: true } });
+    tl.fromTo(f, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.5, ease: 'power3.inOut' })
+      .from(img, { scale: 1.22, filter: 'blur(10px)', duration: 2, ease: 'power3.out', clearProps: 'filter' }, 0)
+      .from(qsa('.be-num, h3, p', txt), { y: 26, opacity: 0, duration: 1, stagger: 0.08, ease: 'power3.out' }, 0.45);
+  });
+  const seuil = qs('.bienetre-seuil-cadre', sec);
+  if (seuil) gsap.fromTo(seuil, { clipPath: 'inset(12% 8% 12% 8%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: seuil, start: 'top 95%', end: 'top 35%', scrub: 0.8 } });
+  gsap.from(qsa('.bienetre-infos li', sec), { y: 30, opacity: 0, duration: 1, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: qs('.bienetre-infos', sec), start: 'top 88%', once: true } });
+}
+
 function flux() {
   const f = qs('[data-flux]');
   if (!f) return;
@@ -249,5 +280,5 @@ function formulaire() {
 }
 
 export function initOrganiser() {
-  pratiques(); coupe(); icones(); parcours(); flux(); formulaire();
+  pratiques(); coupe(); icones(); parcours(); bienEtre(); flux(); formulaire();
 }
