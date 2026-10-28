@@ -1,7 +1,7 @@
 // Barre, menu, mode calme, transitions de page, boutons magnétiques, cartes inclinables, formulaires simulés.
-import { qs, qsa, estCalme, pointeurFin, ecrireStockage } from './outils.js?v=20261028';
-import { defilerVers } from './defilement.js?v=20261028';
-import { goutte } from './son.js?v=20261028';
+import { qs, qsa, estCalme, pointeurFin, ecrireStockage } from './outils.js?v=20261028-2';
+import { defilerVers } from './defilement.js?v=20261028-2';
+import { goutte } from './son.js?v=20261028-2';
 
 const page = () => location.pathname.split('/').pop().replace('.html', '') || 'index';
 

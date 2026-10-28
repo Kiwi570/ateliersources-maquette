@@ -1,5 +1,5 @@
 // La rivière qui se trace le long de la page au défilement, et la libellule qui vole à sa pointe.
-import { qs, qsa, estCalme, estMobile, clamp } from './outils.js?v=20261028';
+import { qs, qsa, estCalme, estMobile, clamp } from './outils.js?v=20261028-2';
 
 export function initRiviere() {
   const svg = qs('.riviere');
@@ -35,22 +35,39 @@ export function initRiviere() {
     });
     pts.push({ x: W / 2, y: H - 10, droit: false });
     let d = `M ${pts[0].x} ${pts[0].y}`;
+    const courbes = [];
     for (let i = 1; i < pts.length; i++) {
       const a = pts[i - 1], b = pts[i], dy = b.y - a.y;
+      let c;
       if (b.droit) {
         const m = mob ? 4 : 14;
-        d += ` C ${a.x + m} ${a.y + dy * 0.33}, ${b.x - m} ${a.y + dy * 0.66}, ${b.x} ${b.y}`;
+        c = [a.x, a.y, a.x + m, a.y + dy * 0.33, b.x - m, a.y + dy * 0.66, b.x, b.y];
       } else {
-        d += ` C ${a.x} ${a.y + dy * 0.5}, ${b.x} ${b.y - dy * 0.5}, ${b.x} ${b.y}`;
+        c = [a.x, a.y, a.x, a.y + dy * 0.5, b.x, b.y - dy * 0.5, b.x, b.y];
       }
+      courbes.push(c);
+      d += ` C ${c[2]} ${c[3]}, ${c[4]} ${c[5]}, ${c[6]} ${c[7]}`;
     }
     lit.setAttribute('d', d); eau.setAttribute('d', d);
     L = eau.getTotalLength();
     eau.style.strokeDasharray = `${L} ${L}`;
-    // table hauteur -> longueur
+    // table hauteur -> longueur, calculée directement sur les courbes de Bézier (getPointAtLength reparcourt
+    // tout le tracé à chaque appel : plus de 500 ms de gel sur une longue page)
     table = [];
-    const n = Math.ceil(L / 24);
-    for (let i = 0; i <= n; i++) { const l = (i / n) * L; const p = eau.getPointAtLength(l); table.push([p.y, l]); }
+    let acc = 0, px = courbes.length ? courbes[0][0] : 0, py = courbes.length ? courbes[0][1] : 0;
+    table.push([py, 0]);
+    courbes.forEach(([x0, y0, x1, y1, x2, y2, x3, y3]) => {
+      const n = Math.max(4, Math.ceil(Math.hypot(x3 - x0, y3 - y0) / 24));
+      for (let i = 1; i <= n; i++) {
+        const t = i / n, u = 1 - t;
+        const x = u * u * u * x0 + 3 * u * u * t * x1 + 3 * u * t * t * x2 + t * t * t * x3;
+        const y = u * u * u * y0 + 3 * u * u * t * y1 + 3 * u * t * t * y2 + t * t * t * y3;
+        acc += Math.hypot(x - px, y - py); px = x; py = y;
+        table.push([y, acc]);
+      }
+    });
+    // recalage sur la longueur exacte du navigateur
+    if (acc > 0) table.forEach((e) => { e[1] *= L / acc; });
     mettreAJour(true);
   }
 
@@ -94,7 +111,7 @@ export function initRiviere() {
   });
 
   window.addEventListener('scroll', () => mettreAJour(), { passive: true });
+  // reconstruite à chaque refresh (app.js en lance un juste après l'intro et un au chargement)
   ScrollTrigger.addEventListener('refresh', construire);
-  window.addEventListener('load', () => ScrollTrigger.refresh());
   construire();
 }

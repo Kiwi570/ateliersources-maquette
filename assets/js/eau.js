@@ -5,8 +5,8 @@ import { Program } from './vendor/ogl/core/Program.js';
 import { Mesh } from './vendor/ogl/core/Mesh.js';
 import { Texture } from './vendor/ogl/core/Texture.js';
 import { Triangle } from './vendor/ogl/extras/Triangle.js';
-import { estCalme, estMobile, bus } from './outils.js?v=20261028';
-import { goutte } from './son.js?v=20261028';
+import { estCalme, estMobile, bus } from './outils.js?v=20261028-2';
+import { goutte } from './son.js?v=20261028-2';
 
 const vertex = /* glsl */ `
 attribute vec2 position;

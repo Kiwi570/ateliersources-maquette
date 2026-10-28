@@ -1,6 +1,6 @@
 // Défilement fluide à la molette (inspiré de Lenis, écrit pour cette maquette).
 // Le tactile et le clavier restent natifs ; ScrollTrigger lit le défilement natif.
-import { clamp, estCalme, pointeurFin } from './outils.js?v=20261028';
+import { clamp, estCalme, pointeurFin } from './outils.js?v=20261028-2';
 
 let cible = 0, courant = 0, actif = false, enCours = false, raf = 0;
 

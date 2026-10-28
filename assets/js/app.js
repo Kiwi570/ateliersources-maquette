@@ -1,14 +1,14 @@
 // Point d'entrée : ouverture orchestrée, puis modules communs et propres à chaque page.
-import { qs, qsa, estCalme } from './outils.js?v=20261028';
-import { initDefilement } from './defilement.js?v=20261028';
-import { initSon } from './son.js?v=20261028';
-import { initInterface } from './interface.js?v=20261028';
-import { initCurseur } from './curseur.js?v=20261028';
-import { initEau } from './eau.js?v=20261028';
-import { initRiviere } from './riviere.js?v=20261028';
-import { initAnimations, initAnimationsCalmes } from './animations.js?v=20261028';
-import { initAccueil } from './accueil.js?v=20261028';
-import { initOrganiser } from './organiser.js?v=20261028';
+import { qs, qsa, estCalme } from './outils.js?v=20261028-2';
+import { initDefilement } from './defilement.js?v=20261028-2';
+import { initSon } from './son.js?v=20261028-2';
+import { initInterface } from './interface.js?v=20261028-2';
+import { initCurseur } from './curseur.js?v=20261028-2';
+import { initEau } from './eau.js?v=20261028-2';
+import { initRiviere } from './riviere.js?v=20261028-2';
+import { initAnimations, initAnimationsCalmes } from './animations.js?v=20261028-2';
+import { initAccueil } from './accueil.js?v=20261028-2';
+import { initOrganiser } from './organiser.js?v=20261028-2';
 
 // Filet de sécurité : si une bibliothèque manque ou qu'un module échoue, le voile d'ouverture se retire
 // et la page reste entièrement lisible.
@@ -73,16 +73,17 @@ function ouverture() {
     const g = qs('.intro-goutte'), ondes = qsa('.intro-onde'), logo = qs('.intro-logo');
     tl.to(g, { attr: { cy: 200 }, duration: 0.5, ease: 'power2.in' })
       .to(g, { attr: { r: 0 }, duration: 0.12 })
-      .fromTo(ondes, { attr: { r: 2 }, opacity: 0.9 }, { attr: { r: 300 }, opacity: 0, duration: 1.5, stagger: 0.16, ease: 'power2.out' }, '<')
+      .fromTo(ondes, { attr: { r: 2 }, opacity: 0.9 }, { attr: { r: 300 }, opacity: 0, duration: 0.9, stagger: 0.16, ease: 'power2.out' }, '<')
       .fromTo(logo, { opacity: 0, scale: 0.94, filter: 'blur(10px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.6, ease: 'power3.out' }, '<0.05')
-      .to(logo, { opacity: 0, y: -10, duration: 0.35, ease: 'power2.in' }, '+=0.25')
+      .to(logo, { opacity: 0, y: -10, duration: 0.35, ease: 'power2.in' })
       .to(intro, { opacity: 0, duration: 0.45, onComplete: () => intro.classList.add('is-fini') }, '<0.1')
       .add(() => eau && eau.ouvrir(1.5), '<');
   } else {
     tl.to(intro, { yPercent: -100, duration: 0.8, ease: 'power3.inOut', onComplete: () => intro.classList.add('is-fini') })
       .add(() => eau && eau.ouvrir(1.2), 0.1);
   }
-  tl.to(split.lines, { yPercent: 0, duration: 1.2, stagger: 0.09, ease: 'expo.out' }, longue ? '-=0.35' : '-=0.45')
+  // le titre monte en même temps que le voile s'efface (lisible avant 2,5 s, intro longue comprise)
+  tl.to(split.lines, { yPercent: 0, duration: 1.2, stagger: 0.09, ease: 'expo.out' }, longue ? '<' : '-=0.45')
     .to(autres, { opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out' }, '<0.25')
     .to('.barre', { yPercent: 0, duration: 0.9, ease: 'power3.out' }, '<');
 }

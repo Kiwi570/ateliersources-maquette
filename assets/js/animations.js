@@ -1,5 +1,5 @@
 // Animations communes : titres, révélations, compteurs, parallaxe, défilements horizontaux épinglés.
-import { qs, qsa, estCalme } from './outils.js?v=20261028';
+import { qs, qsa, estCalme } from './outils.js?v=20261028-2';
 
 // aria-label n'est permis que sur les titres : ailleurs, la découpe reste lisible telle quelle
 const ariaSplit = (el) => (/^H[1-6]$/.test(el.tagName) ? 'auto' : 'none');

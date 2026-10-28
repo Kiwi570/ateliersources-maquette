@@ -1,7 +1,7 @@
 // Page « Organiser un stage » : pratiques, maison en coupe, matériel, parcours, témoins, demande de disponibilité.
-import { qs, qsa, estCalme } from './outils.js?v=20261028';
-import { goutte } from './son.js?v=20261028';
-import { defilerVers } from './defilement.js?v=20261028';
+import { qs, qsa, estCalme } from './outils.js?v=20261028-2';
+import { goutte } from './son.js?v=20261028-2';
+import { defilerVers } from './defilement.js?v=20261028-2';
 
 function pratiques() {
   const ul = qs('[data-pratiques]');

@@ -1,6 +1,6 @@
 // Ambiance sonore générée en direct (aucun fichier audio) : rivière l'été, feu de bois l'hiver.
 // Ne démarre qu'après un clic sur « Son ».
-import { qsa, bus } from './outils.js?v=20261028';
+import { qsa, bus } from './outils.js?v=20261028-2';
 
 let ctx = null, maitre = null, gainRiviere = null, gainFeu = null, actif = false, minuterie = 0, saison = 0;
 
