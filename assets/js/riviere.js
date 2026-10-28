@@ -1,5 +1,5 @@
 // La rivière qui se trace le long de la page au défilement, et la libellule qui vole à sa pointe.
-import { qs, qsa, estCalme, estMobile, clamp } from './outils.js';
+import { qs, qsa, estCalme, estMobile, clamp } from './outils.js?v=20261028';
 
 export function initRiviere() {
   const svg = qs('.riviere');

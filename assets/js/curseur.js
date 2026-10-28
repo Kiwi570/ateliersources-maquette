@@ -1,5 +1,5 @@
 // Curseur personnalisé : un anneau qui laisse des ronds dans l'eau en se déplaçant.
-import { qs, estCalme, pointeurFin } from './outils.js';
+import { qs, estCalme, pointeurFin } from './outils.js?v=20261028';
 
 export function initCurseur() {
   if (estCalme() || !pointeurFin()) return;

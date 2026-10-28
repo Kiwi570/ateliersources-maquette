@@ -1,14 +1,14 @@
 // Point d'entrée : ouverture orchestrée, puis modules communs et propres à chaque page.
-import { qs, qsa, estCalme } from './outils.js';
-import { initDefilement } from './defilement.js';
-import { initSon } from './son.js';
-import { initInterface } from './interface.js';
-import { initCurseur } from './curseur.js';
-import { initEau } from './eau.js';
-import { initRiviere } from './riviere.js';
-import { initAnimations, initAnimationsCalmes } from './animations.js';
-import { initAccueil } from './accueil.js';
-import { initOrganiser } from './organiser.js';
+import { qs, qsa, estCalme } from './outils.js?v=20261028';
+import { initDefilement } from './defilement.js?v=20261028';
+import { initSon } from './son.js?v=20261028';
+import { initInterface } from './interface.js?v=20261028';
+import { initCurseur } from './curseur.js?v=20261028';
+import { initEau } from './eau.js?v=20261028';
+import { initRiviere } from './riviere.js?v=20261028';
+import { initAnimations, initAnimationsCalmes } from './animations.js?v=20261028';
+import { initAccueil } from './accueil.js?v=20261028';
+import { initOrganiser } from './organiser.js?v=20261028';
 
 // Filet de sécurité : si une bibliothèque manque ou qu'un module échoue, le voile d'ouverture se retire
 // et la page reste entièrement lisible.

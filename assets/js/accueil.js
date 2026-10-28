@@ -1,7 +1,7 @@
 // Page d'accueil : saisons, table, carte du village, rituel du sauna, programme, témoignages, ligne de train.
-import { qs, qsa, estCalme, estMobile, bus, clamp } from './outils.js';
-import { stages } from './donnees/programme.js';
-import { goutte } from './son.js';
+import { qs, qsa, estCalme, estMobile, bus, clamp } from './outils.js?v=20261028';
+import { stages } from './donnees/programme.js?v=20261028';
+import { goutte } from './son.js?v=20261028';
 
 /* ---------- Toute l'année : été / hiver ---------- */
 function saisons() {
